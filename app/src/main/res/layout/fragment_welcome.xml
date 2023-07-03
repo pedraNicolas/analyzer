@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_gray"
+    tools:context="com.analyzer.ui.views.welcome.WelcomeFragment">
+
+
+    <ImageView
+        android:id="@+id/ivMentalHearth"
+        android:layout_width="@dimen/dp64"
+        android:layout_height="@dimen/dp64"
+        android:layout_marginTop="@dimen/dp136"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_mental_hearth" />
+
+
+
+    <TextView
+        android:id="@+id/tvAppName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp8"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="Analizador \n de dibujos"
+        android:textAlignment="center"
+        android:textColor="@color/blue_mental_hearth"
+        android:textSize="@dimen/dp24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivMentalHearth" />
+
+    <TextView
+        android:id="@+id/tvAppDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp16"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="Aqui pondriamos una \n descripcion de que hacemos \n en la App"
+        android:textAlignment="center"
+        android:textSize="@dimen/dp16"
+        android:textColor="@color/text_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAppName" />
+
+    <Button
+        android:id="@+id/btnStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp136"
+        android:backgroundTint="@color/blue_mental_hearth"
+        android:fontFamily="@font/open_sans_semibold"
+        android:text="  Empecemos   "
+        android:textColor="@color/white"
+        android:textSize="@dimen/dp16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAppDescription" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

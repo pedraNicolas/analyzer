@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp56"
+        android:layout_alignParentTop="true"
+        android:background="@color/blue_mental_hearth">
+
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/dp16"
+            android:fillColor="@color/white"
+            app:srcCompat="@drawable/ic_nav_close_white"
+            tools:ignore="VectorDrawableCompat" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/open_sans_bold"
+            android:lineHeight="@dimen/dp120"
+            android:text="Title"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dp16" />
+
+        <ImageView
+            android:id="@+id/ivClose"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/dp16"
+            app:srcCompat="@drawable/ic_close_x_white"
+            tools:ignore="VectorDrawableCompat" />
+
+    </RelativeLayout>
+
+</merge>

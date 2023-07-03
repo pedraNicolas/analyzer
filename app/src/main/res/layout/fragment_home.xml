@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_mental_hearth"
+    tools:context="com.analyzer.ui.views.home.HomeFragment">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp136"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="Antes de empezar"
+        android:textColor="@color/light_gray"
+        android:textSize="@dimen/dp24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/tvPatientName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp16"
+        android:layout_marginTop="@dimen/dp32"
+        android:backgroundTint="@color/light_gray"
+        android:ems="10"
+        android:fontFamily="@font/open_sans_semibold"
+        android:hint="Nombre del Paciente"
+        android:inputType="text"
+        android:textColor="@color/light_gray"
+        android:textColorHint="@color/hint_light_gray"
+        android:textSize="@dimen/dp16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <EditText
+        android:id="@+id/tvProfessionalName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp16"
+        android:layout_marginTop="@dimen/dp8"
+        android:backgroundTint="@color/light_gray"
+        android:ems="10"
+        android:fontFamily="@font/open_sans_semibold"
+        android:hint="Nombre del Profesional"
+        android:inputType="text"
+        android:textColor="@color/light_gray"
+        android:textColorHint="@color/hint_light_gray"
+        android:textSize="@dimen/dp16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPatientName" />
+
+    <EditText
+        android:id="@+id/tvEnrolmentNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp16"
+        android:layout_marginTop="@dimen/dp8"
+        android:backgroundTint="@color/light_gray"
+        android:ems="10"
+        android:fontFamily="@font/open_sans_semibold"
+        android:hint="Matricula (Opcional)"
+        android:inputType="text"
+        android:textColor="@color/light_gray"
+        android:textColorHint="@color/hint_light_gray"
+        android:textSize="@dimen/dp16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvProfessionalName" />
+
+
+    <LinearLayout
+        android:id="@+id/llUpload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp64"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvEnrolmentNumber">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_upload_file_white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp8"
+            android:fontFamily="@font/open_sans_semibold"
+            android:text="Adjuntar \ndibujo"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dp14" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnNext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp88"
+        android:layout_marginBottom="@dimen/dp64"
+        android:backgroundTint="@color/light_gray"
+        android:fontFamily="@font/open_sans_semibold"
+        android:text="Siguiente"
+        android:textColor="@color/blue_mental_hearth"
+        android:textSize="@dimen/dp16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
