@@ -23,6 +23,7 @@ class WelcomeFragment : Fragment() {
         binding = FragmentWelcomeBinding.inflate(inflater, container, false)
 
 
+
         setUpComponents()
 
 
