@@ -6,9 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
-import com.example.R
-import com.example.databinding.FragmentHomeBinding
-import com.example.databinding.FragmentWelcomeBinding
+import com.analyzer.R
+import com.analyzer.databinding.FragmentHomeBinding
+import com.analyzer.databinding.FragmentWelcomeBinding
 
 class HomeFragment : Fragment() {
 

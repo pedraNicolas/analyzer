@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.example.R
+import com.analyzer.R
 
 class HeaderLayout @JvmOverloads constructor(
     context: Context,
