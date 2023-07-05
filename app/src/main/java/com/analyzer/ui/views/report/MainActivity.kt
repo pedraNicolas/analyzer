@@ -1,4 +1,4 @@
-package com.analyzer.ui.views
+package com.analyzer.ui.views.report
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

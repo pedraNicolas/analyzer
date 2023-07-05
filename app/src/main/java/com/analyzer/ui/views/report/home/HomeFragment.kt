@@ -1,4 +1,4 @@
-package com.analyzer.ui.views.welcome
+package com.analyzer.ui.views.report.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,34 +7,27 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import com.analyzer.R
+import com.analyzer.databinding.FragmentHomeBinding
 import com.analyzer.databinding.FragmentWelcomeBinding
 
-class WelcomeFragment : Fragment() {
+class HomeFragment : Fragment() {
 
-    private lateinit var binding: FragmentWelcomeBinding
-
-
-
+    private lateinit var binding: FragmentHomeBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentWelcomeBinding.inflate(inflater, container, false)
-
-
-
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
         setUpComponents()
-
-
         return binding.root
     }
 
     private fun setUpComponents() {
         with(binding) {
-            btnStart.setOnClickListener {
+            btnNext.setOnClickListener {
                 Navigation.findNavController(it)
-                    .navigate(R.id.action_welcomeFragment_to_homeFragment)
+                    .navigate(R.id.action_homeFragment_to_indicatorsFragment)
             }
         }
     }

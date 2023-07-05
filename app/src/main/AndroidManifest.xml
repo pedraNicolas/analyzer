@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Example"
         tools:targetApi="31">
         <activity
-            android:name="com.analyzer.ui.views.MainActivity"
+            android:name="com.analyzer.ui.views.report.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

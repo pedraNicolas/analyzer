@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blue_mental_hearth"
-    tools:context="com.analyzer.ui.views.home.HomeFragment">
+    tools:context="com.analyzer.ui.views.report.home.HomeFragment">
 
     <TextView
         android:id="@+id/textView"

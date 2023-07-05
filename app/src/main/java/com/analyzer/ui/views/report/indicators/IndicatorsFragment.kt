@@ -1,4 +1,4 @@
-package com.analyzer.ui.views.indicators
+package com.analyzer.ui.views.report.indicators
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

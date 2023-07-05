@@ -1,4 +1,4 @@
-package com.analyzer.ui.views.conclusions
+package com.analyzer.ui.views.report.conclusions
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
