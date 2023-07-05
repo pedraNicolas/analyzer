@@ -8,14 +8,14 @@ plugins {
 }
 
 android {
-    namespace 'com.example'
+    namespace 'com.analyzer'
     compileSdk 33
 
     defaultConfig {
         def versionMajor = 0
         def versionMinor = 0
         def versionPatch = 1
-        applicationId "com.example"
+        applicationId "com.analyzer"
         minSdk 21
         targetSdk 33
         versionCode Integer.valueOf("${versionMajor}${versionMinor}${versionPatch}")
@@ -63,6 +63,7 @@ dependencies {
 
     //Firebase
     implementation platform('com.google.firebase:firebase-bom:30.2.0')
+    implementation("com.google.firebase:firebase-analytics-ktx")
 
     //Firebase Storage
     implementation "com.google.firebase:firebase-storage-ktx:16.0.5"

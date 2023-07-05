@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "639145427128",
+    "project_id": "analyzer-54416",
+    "storage_bucket": "analyzer-54416.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:639145427128:android:23eeebfe82ad3ff8f5344d",
+        "android_client_info": {
+          "package_name": "com.analyzer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "639145427128-62fpi9he2798bpfkqfbvrn73j2fn14bv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbo21bOIDl2do_4JJiZR1OqfRdMNhazXc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "639145427128-62fpi9he2798bpfkqfbvrn73j2fn14bv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
