@@ -17,5 +17,6 @@
     <dimen name= "dp96">96dp</dimen>
     <dimen name= "dp120">120dp</dimen>
     <dimen name= "dp136">136dp</dimen>
+    <dimen name= "dp152">152dp</dimen>
     <dimen name= "dp208">208dp</dimen>
 </resources>

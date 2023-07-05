@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Example</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="before_starting">Antes de empezar</string>
+    <string name="patient_name">Nombre del paciente</string>
+    <string name="professional_name">Nombre del profesional</string>
+    <string name="registration_number">Matrícula (opcional)</string>
 </resources>
