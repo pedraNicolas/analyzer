@@ -12,11 +12,14 @@ android {
     compileSdk 33
 
     defaultConfig {
+        def versionMajor = 0
+        def versionMinor = 0
+        def versionPatch = 1
         applicationId "com.example"
         minSdk 21
         targetSdk 33
-        versionCode 1
-        versionName "1.0"
+        versionCode Integer.valueOf("${versionMajor}${versionMinor}${versionPatch}")
+        versionName "${versionMajor}.${versionMinor}.${versionPatch}"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -42,8 +45,8 @@ android {
 dependencies {
     def nav_version = "2.5.3"
     def activity_version = "1.5.0"
-    def fragment_version ="1.5.0"
-    def coroutines_version="1.6.1"
+    def fragment_version = "1.5.0"
+    def coroutines_version = "1.6.1"
 
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
