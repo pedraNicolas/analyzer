@@ -8,14 +8,14 @@ plugins {
 }
 
 android {
-    namespace 'com.analyzer'
+    namespace 'com.psijuego'
     compileSdk 33
 
     defaultConfig {
         def versionMajor = 0
         def versionMinor = 0
         def versionPatch = 1
-        applicationId "com.analyzer"
+        applicationId "com.psijuego"
         minSdk 21
         targetSdk 33
         versionCode Integer.valueOf("${versionMajor}${versionMinor}${versionPatch}")

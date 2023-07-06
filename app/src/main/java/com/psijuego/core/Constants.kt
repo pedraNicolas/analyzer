@@ -1,4 +1,4 @@
-package com.analyzer.core
+package com.psijuego.core
 
 class Constants {
 

@@ -1,4 +1,4 @@
-package com.analyzer.ui.views.report.home
+package com.psijuego.ui.views.report.home
 
 import android.app.Activity
 import android.content.Intent
@@ -10,21 +10,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
 import androidx.navigation.Navigation
-import com.analyzer.R
-import com.analyzer.core.utils.CoreModule
-import com.analyzer.core.utils.UtilFile
-import com.analyzer.core.utils.UtilUploadFiles
-import com.analyzer.data.model.WelcomeUI
-import com.analyzer.databinding.FragmentHomeBinding
-import com.analyzer.databinding.FragmentWelcomeBinding
-import com.analyzer.ui.views.report.ReportViewModel
+import com.psijuego.R
+import com.psijuego.core.utils.UtilFile
+import com.psijuego.core.utils.UtilUploadFiles
+import com.psijuego.data.model.WelcomeUI
+import com.psijuego.databinding.FragmentHomeBinding
+import com.psijuego.ui.views.report.ReportViewModel
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
-import java.io.File
-import javax.inject.Inject
-import kotlin.math.max
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {

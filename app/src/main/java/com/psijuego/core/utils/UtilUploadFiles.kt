@@ -1,8 +1,7 @@
-package com.analyzer.core.utils
+package com.psijuego.core.utils
 
 import android.content.Intent
 import android.provider.MediaStore
-import javax.inject.Inject
 
 class UtilUploadFiles{
 

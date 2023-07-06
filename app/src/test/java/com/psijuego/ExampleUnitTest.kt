@@ -1,4 +1,4 @@
-package com.analyzer
+package com.psijuego
 
 import org.junit.Test
 

@@ -6,7 +6,7 @@
 
 
     <application
-        android:name=".AnalyzerApp"
+        android:name=".PsiJuegoApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -17,7 +17,7 @@
         android:theme="@style/Theme.Example"
         tools:targetApi="31">
         <activity
-            android:name="com.analyzer.ui.views.report.MainActivity"
+            android:name="com.psijuego.ui.views.report.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,7 +28,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.analyzer.provider"
+            android:authorities="com.psijuego.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

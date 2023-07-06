@@ -1,4 +1,4 @@
-package com.analyzer.data.model
+package com.psijuego.data.model
 
 import android.net.Uri
 

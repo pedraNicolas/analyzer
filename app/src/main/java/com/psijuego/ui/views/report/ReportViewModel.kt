@@ -1,9 +1,9 @@
-package com.analyzer.ui.views.report
+package com.psijuego.ui.views.report
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.analyzer.data.model.WelcomeUI
+import com.psijuego.data.model.WelcomeUI
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

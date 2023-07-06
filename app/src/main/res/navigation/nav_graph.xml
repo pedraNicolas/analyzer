@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/welcomeFragment"
-        android:name="com.analyzer.ui.views.report.welcome.WelcomeFragment"
+        android:name="com.psijuego.ui.views.report.welcome.WelcomeFragment"
         android:label="fragment_welcome"
         tools:layout="@layout/fragment_welcome" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.analyzer.ui.views.report.home.HomeFragment"
+        android:name="com.psijuego.ui.views.report.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/indicatorsFragment"
-        android:name="com.analyzer.ui.views.report.indicators.IndicatorsFragment"
+        android:name="com.psijuego.ui.views.report.indicators.IndicatorsFragment"
         android:label="fragment_indicators"
         tools:layout="@layout/fragment_indicators" >
         <action
