@@ -4,4 +4,5 @@
     <string name="patient_name">Nombre del paciente</string>
     <string name="professional_name">Nombre del profesional</string>
     <string name="registration_number">Matrícula (opcional)</string>
+    <string name="images">Images</string>
 </resources>

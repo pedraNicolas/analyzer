@@ -8,7 +8,7 @@
     tools:context="com.analyzer.ui.views.report.home.HomeFragment">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp136"
@@ -35,7 +35,7 @@
         android:textSize="@dimen/dp16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
     <EditText
         android:id="@+id/tvProfessionalName"
@@ -55,7 +55,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvPatientName" />
 
     <EditText
-        android:id="@+id/tvEnrolmentNumber"
+        android:id="@+id/tvRegistrationNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/dp16"
@@ -73,7 +73,7 @@
 
 
     <LinearLayout
-        android:id="@+id/llUpload"
+        android:id="@+id/btnUpload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp64"
@@ -81,7 +81,7 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvEnrolmentNumber">
+        app:layout_constraintTop_toBottomOf="@id/tvRegistrationNumber">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -107,7 +107,7 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvEnrolmentNumber"
+        app:layout_constraintTop_toBottomOf="@id/tvRegistrationNumber"
         tools:src="@tools:sample/avatars" />
 
     <ImageView
