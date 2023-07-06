@@ -19,21 +19,39 @@ class UtilFile {
 
     private val context = CoreModule.getContext()!!
 
-    fun fileName(firstNamePart: String, lastNamePart: String): String {
+    private fun fileName(firstNamePart: String, lastNamePart: String): String {
         val format = SimpleDateFormat("yyMMdd-hhmmss-SSS")
         return "$firstNamePart-${format.format(Date())}$lastNamePart"
     }
 
+    fun deleteFile(filePath: String?): Boolean{
+        return try{
+            val file = File(filePath)
+            var deleted = false
+            if(file.exists()){
+                deleted = file.delete()
+            }
+            deleted
+        }catch (e: Exception){
+            false
+        }
+    }
+
     private fun getExternalDirectory(subFolder: String): String {
-        val appDir = CoreModule.getContext()?.filesDir
-        if (appDir != null && !appDir.exists()) appDir.mkdirs()
-        val subFolderFile = File("${appDir?.absolutePath}/$subFolder")
+        val directory = getDirectory()
+        val subFolderFile = File("${directory}/$subFolder")
         if (!subFolderFile.exists()) subFolderFile.mkdirs()
         return subFolderFile.absolutePath
     }
 
+    private fun getDirectory():String {
+        val appDir = CoreModule.getContext()?.filesDir
+        if (appDir != null && !appDir.exists()) appDir.mkdirs()
+        return appDir!!.absolutePath
+    }
 
-    fun getImageFullFilePath(fileName: String): String? {
+
+    fun getImageFullFilePath(fileName: String?): String? {
         return if (fileName == null) {
             null;
         } else {
@@ -41,7 +59,7 @@ class UtilFile {
         }
     }
 
-    fun getUri(file: File): Uri {
+    private fun getUri(file: File): Uri {
         return FileProvider.getUriForFile(
             context,
             "${context.applicationContext.packageName}.provider",
@@ -51,12 +69,7 @@ class UtilFile {
 
     fun copyContentUriImageToDir(uri: Uri): Uri {
         val inputStream = context.contentResolver.openInputStream(uri)
-        val localTargetFilePath = "${getExternalDirectory(IMAGE_DIRECTORY)}/${
-            fileName(
-                IMAGE_FIRST_NAME_PART,
-                JPG_EXTENSION
-            )
-        }"
+        val localTargetFilePath = "${getExternalDirectory(IMAGE_DIRECTORY)}/${fileName(IMAGE_FIRST_NAME_PART, JPG_EXTENSION)}"
         val outPut = FileOutputStream(localTargetFilePath)
         writeOutputStream(inputStream!!, outPut)
         return getUri(File(localTargetFilePath))
