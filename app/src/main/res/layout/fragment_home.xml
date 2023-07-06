@@ -73,7 +73,7 @@
 
 
     <LinearLayout
-        android:id="@+id/llUpload"
+        android:id="@+id/btnUpload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp64"

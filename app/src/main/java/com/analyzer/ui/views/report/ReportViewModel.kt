@@ -5,9 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.analyzer.data.model.WelcomeUI
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
 @HiltViewModel
-class ReportViewModel : ViewModel() {
+class ReportViewModel @Inject constructor() : ViewModel() {
 
     private val _welcomeUI = MutableLiveData<WelcomeUI>()
     val welcomeUI: LiveData<WelcomeUI> = _welcomeUI
