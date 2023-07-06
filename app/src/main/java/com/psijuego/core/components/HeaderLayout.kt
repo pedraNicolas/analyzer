@@ -1,4 +1,4 @@
-package com.analyzer.core.components
+package com.psijuego.core.components
 
 import android.content.Context
 import android.util.AttributeSet
@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.analyzer.R
+import com.psijuego.R
 
 class HeaderLayout @JvmOverloads constructor(
     context: Context,

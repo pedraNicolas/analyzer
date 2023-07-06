@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.analyzer.ui.views.report.indicators.IndicatorsFragment">
+    tools:context="com.psijuego.ui.views.report.indicators.IndicatorsFragment">
 
-    <com.analyzer.core.components.HeaderLayout
+    <com.psijuego.core.components.HeaderLayout
         android:id="@+id/headerLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

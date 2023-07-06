@@ -1,11 +1,11 @@
-package com.analyzer
+package com.psijuego
 
 import android.app.Application
-import com.analyzer.core.utils.CoreModule
+import com.psijuego.core.utils.CoreModule
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class AnalyzerApp: Application() {
+class PsiJuegoApp: Application() {
     override fun onCreate() {
         super.onCreate()
         CoreModule.init(this)

@@ -1,4 +1,4 @@
-package com.analyzer.core.utils
+package com.psijuego.core.utils
 
 import android.content.Context
 import java.lang.ref.WeakReference

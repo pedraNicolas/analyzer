@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/dp16"
-    tools:context="com.analyzer.ui.views.report.conclusions.ConclusionsFragment">
+    tools:context="com.psijuego.ui.views.report.conclusions.ConclusionsFragment">
 
 
     <TextView
