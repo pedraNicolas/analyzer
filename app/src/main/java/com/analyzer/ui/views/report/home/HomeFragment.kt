@@ -46,26 +46,47 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    override fun onPause() {
+        super.onPause()
+        bindToObject()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        bindToForm()
+    }
+
     private fun setUpComponents() {
         with(binding) {
-            btnNext.setOnClickListener(::onNext)
+            btnNext.setOnClickListener(::preValidate)
             btnUpload.setOnClickListener(::attachGalleryDraw)
             ivDelete.setOnClickListener(::onDeleteImage)
         }
     }
 
-    private fun onNext(view: View) {
+    private fun preValidate(view: View) {
+        with(binding) {
+            if (tvPatientName.text.isEmpty()) {
+                tvPatientName.error = getString(R.string.invalid_field)
+                return
+            }
+            if (tvProfessionalName.text.isEmpty()) {
+                tvProfessionalName.error = getString(R.string.invalid_field)
+                return
+            }
+            onNext()
+        }
+    }
+
+    private fun onNext() {
         viewModel.setWelcomeUI(bindToObject())
-        Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_indicatorsFragment)
+        Navigation.findNavController(binding.root)
+            .navigate(R.id.action_homeFragment_to_indicatorsFragment)
     }
 
     private fun onDeleteImage(view: View) {
-//        var filePath: String? = ""
-//        if(mUri != null){
-//            filePath = utilFile.getImageFullFilePath(mUri!!.lastPathSegment)
-//        }
-        var filePath = mUri?.lastPathSegment?.let { utilFile.getImageFullFilePath(it) } ?: ""
-        var deleted = utilFile.deleteFile(filePath)
+        val filePath = mUri?.lastPathSegment?.let { utilFile.getImageFullFilePath(it) } ?: ""
+        val deleted = utilFile.deleteFile(filePath)
         if (deleted) {
             mUri = null
             with(binding) {
@@ -100,20 +121,26 @@ class HomeFragment : Fragment() {
         } catch (e: Exception) {
             e.printStackTrace()
         }
-        showImageOnComponent()
+        updateComponent()
     }
 
-
-    private fun showImageOnComponent() {
+    private fun updateComponent() {
         if (mUri != null) {
+            val uri = mUri
             with(binding) {
                 btnUpload.visibility = View.GONE
                 ivImage.visibility = View.VISIBLE
                 ivDelete.visibility = View.VISIBLE
-                Glide.with(this@HomeFragment)
-                    .load(mUri)
-                    .into(ivImage)
+                showImage(uri)
             }
+        }
+    }
+
+    private fun showImage(uri: Uri?) {
+        if (uri != null) {
+            Glide.with(this@HomeFragment)
+                .load(uri)
+                .into(binding.ivImage)
         }
     }
 
@@ -125,5 +152,16 @@ class HomeFragment : Fragment() {
             welcomeUI.uri = mUri
         }
         return welcomeUI
+    }
+
+    private fun bindToForm() {
+        if (welcomeUI != null) {
+            with(binding) {
+                welcomeUI.nameProfessional.let { tvProfessionalName.setText(it) }
+                welcomeUI.namePatient.let { tvPatientName.setText(it) }
+                welcomeUI.numberRegistration.let { tvRegistrationNumber.setText(it) }
+                showImage(welcomeUI.uri)
+            }
+        }
     }
 }
