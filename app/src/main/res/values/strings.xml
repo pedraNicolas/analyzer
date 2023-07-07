@@ -6,4 +6,9 @@
     <string name="registration_number">Matrícula (opcional)</string>
     <string name="images">Images</string>
     <string name="invalid_field">Campo obligatorio</string>
+    <string name="name_qr_bottom">Generar QR</string>
+    <string name="cancel">Cancelar</string>
+    <string name="conclusion">Conclusiones</string>
+
+
 </resources>
