@@ -71,6 +71,9 @@ dependencies {
     //Firebase Storage
     implementation "com.google.firebase:firebase-storage-ktx:16.0.5"
 
+    //Firebase Firestore
+    implementation("com.google.firebase:firebase-firestore-ktx")
+
     //PDF
     implementation 'com.itextpdf:itextpdf:5.5.9'
 
