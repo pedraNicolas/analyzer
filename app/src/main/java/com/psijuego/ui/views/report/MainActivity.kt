@@ -1,12 +1,14 @@
-package com.analyzer.ui.views
+package com.psijuego.ui.views.report
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import com.analyzer.R
-import com.analyzer.databinding.ActivityMainBinding
+import com.psijuego.R
+import com.psijuego.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding

@@ -1,4 +1,4 @@
-package com.analyzer.ui.views.home
+package com.psijuego.ui.views.report.welcome
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,28 +6,35 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
-import com.analyzer.R
-import com.analyzer.databinding.FragmentHomeBinding
-import com.analyzer.databinding.FragmentWelcomeBinding
+import com.psijuego.R
+import com.psijuego.databinding.FragmentWelcomeBinding
 
-class HomeFragment : Fragment() {
+class WelcomeFragment : Fragment() {
 
-    private lateinit var binding: FragmentHomeBinding
+    private lateinit var binding: FragmentWelcomeBinding
+
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        binding = FragmentWelcomeBinding.inflate(inflater, container, false)
+
+
+
         setUpComponents()
+
+
         return binding.root
     }
 
     private fun setUpComponents() {
         with(binding) {
-            btnNext.setOnClickListener {
+            btnStart.setOnClickListener {
                 Navigation.findNavController(it)
-                    .navigate(R.id.action_homeFragment_to_indicatorsFragment)
+                    .navigate(R.id.action_welcomeFragment_to_homeFragment)
             }
         }
     }

@@ -1,7 +1,9 @@
 <resources>
-    <string name="app_name">Example</string>
+    <string name="app_name">PSI Juego</string>
     <string name="before_starting">Antes de empezar</string>
     <string name="patient_name">Nombre del paciente</string>
     <string name="professional_name">Nombre del profesional</string>
     <string name="registration_number">Matrícula (opcional)</string>
+    <string name="images">Images</string>
+    <string name="invalid_field">Campo obligatorio</string>
 </resources>

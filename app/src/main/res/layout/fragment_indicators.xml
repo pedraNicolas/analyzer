@@ -1,40 +1,36 @@
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.analyzer.ui.views.indicators.IndicatorsFragment">
+    tools:context="com.psijuego.ui.views.report.indicators.IndicatorsFragment">
 
-    <com.analyzer.core.components.HeaderLayout
+    <com.psijuego.core.components.HeaderLayout
         android:id="@+id/headerLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         custom:back="true"
         custom:close="false"
         custom:textHeader="Nico" />
 
-    <ScrollView
-        android:id="@+id/scrollView2"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:paddingHorizontal="@dimen/dp16"
-        app:layout_constraintTop_toBottomOf="@id/headerLayout"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tvCounter"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="@dimen/dp64">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/headerLayout">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="vertical"
-            android:gravity="center">
+            android:padding="@dimen/dp16">
 
             <TextView
                 android:id="@+id/textView2"
@@ -44,9 +40,11 @@
                 android:text="TextView" />
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvIndicators"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:itemCount="2"
+                android:layout_height="match_parent"
+                android:overScrollMode="never"
+                tools:itemCount="15"
                 tools:listitem="@layout/item_layout" />
 
             <Button
@@ -54,17 +52,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/dp56"
+                android:layout_marginTop="@dimen/dp32"
                 android:backgroundTint="@color/blue_mental_hearth"
                 android:fontFamily="@font/open_sans_semibold"
                 android:text="Siguiente"
                 android:textColor="@color/light_gray"
-                android:textSize="@dimen/dp16"
-                android:layout_marginTop="@dimen/dp32"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                android:textSize="@dimen/dp16" />
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
+
+    <TextView
+        android:id="@+id/tvCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/dp16"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

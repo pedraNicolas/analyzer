@@ -8,14 +8,14 @@ plugins {
 }
 
 android {
-    namespace 'com.analyzer'
+    namespace 'com.psijuego'
     compileSdk 33
 
     defaultConfig {
         def versionMajor = 0
         def versionMinor = 0
         def versionPatch = 1
-        applicationId "com.analyzer"
+        applicationId "com.psijuego"
         minSdk 21
         targetSdk 33
         versionCode Integer.valueOf("${versionMajor}${versionMinor}${versionPatch}")
@@ -39,6 +39,9 @@ android {
     }
     viewBinding {
         enabled = true
+    }
+    kapt {
+        correctErrorTypes = true
     }
 }
 
@@ -68,6 +71,9 @@ dependencies {
     //Firebase Storage
     implementation "com.google.firebase:firebase-storage-ktx:16.0.5"
 
+    //Firebase Firestore
+    implementation("com.google.firebase:firebase-firestore-ktx")
+
     //PDF
     implementation 'com.itextpdf:itextpdf:5.5.9'
 
@@ -90,6 +96,10 @@ dependencies {
     //Dagger Hilt Library
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    kapt 'com.github.bumptech.glide:compiler:4.12.0'
 
 
     testImplementation 'junit:junit:4.13.2'
