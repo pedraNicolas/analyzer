@@ -19,7 +19,7 @@ class HeaderLayout @JvmOverloads constructor(
     private lateinit var view: View
     private lateinit var ivBack: ImageView
     private lateinit var ivClose: ImageView
-    private lateinit var textviewtitle: TextView
+    private lateinit var tvtitle: TextView
 
     init {
         init(context, attrs)
@@ -28,7 +28,7 @@ class HeaderLayout @JvmOverloads constructor(
     private fun init(context: Context, attrs: AttributeSet?) {
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         view = inflater.inflate(R.layout.header_layout, this, true)
-        textviewtitle = findViewById(R.id.tvTitle)
+        tvtitle = findViewById(R.id.tvTitle)
         ivBack = findViewById(R.id.ivBack)
         ivClose = findViewById(R.id.ivClose)
         setUpComponents(attrs)
@@ -42,6 +42,18 @@ class HeaderLayout @JvmOverloads constructor(
 
         ivBack.visibility = if (isBack) View.VISIBLE else View.GONE
         ivClose.visibility = if (isClose) View.VISIBLE else View.GONE
-        textviewtitle.text = title
+        tvtitle.text = title
+    }
+
+    fun setTitle(title: String) {
+        tvtitle.text = title
+    }
+
+    fun showBack(show: Boolean) {
+        ivBack.visibility = if (show) View.VISIBLE else View.GONE
+    }
+
+    fun showClose(show: Boolean) {
+        ivClose.visibility = if (show) View.VISIBLE else View.GONE
     }
 }

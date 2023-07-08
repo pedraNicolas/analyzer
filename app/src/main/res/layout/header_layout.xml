@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp56"
         android:layout_alignParentTop="true"
@@ -12,34 +12,38 @@
         <ImageView
             android:id="@+id/ivBack"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_centerVertical="true"
+            android:layout_height="@dimen/dp56"
             android:layout_marginStart="@dimen/dp16"
-            android:fillColor="@color/white"
-            app:srcCompat="@drawable/ic_nav_close_white"
-            tools:ignore="VectorDrawableCompat" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_nav_close_white" />
 
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_marginVertical="@dimen/dp8"
             android:fontFamily="@font/open_sans_bold"
-            android:lineHeight="@dimen/dp120"
-            android:text="Title"
+            android:inputType="textMultiLine"
+            android:maxLines="3"
+            android:text="text"
+            android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="@dimen/dp16" />
+            android:textSize="@dimen/dp16"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/ivClose"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
+            android:layout_height="@dimen/dp56"
             android:layout_marginEnd="@dimen/dp16"
-            app:srcCompat="@drawable/ic_close_x_white"
-            tools:ignore="VectorDrawableCompat" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_close_x_white" />
 
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </merge>

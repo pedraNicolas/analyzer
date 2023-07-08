@@ -7,5 +7,6 @@ data class IndicatorUI(
 
 data class ParameterUI(
     val name: String,
-    val description: String
+    val description: String,
+    val selected: Boolean
 )
