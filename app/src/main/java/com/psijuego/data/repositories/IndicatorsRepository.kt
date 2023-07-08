@@ -12,7 +12,7 @@ class IndicatorsRepository @Inject constructor(
         val indicatorList = db.getDataFromFirestore().map { document ->
             val indicator = document.id
             val parameterList = document.data?.entries?.mapNotNull {
-                ParameterUI(it.key, it.value.toString())
+                ParameterUI(it.key, it.value.toString(), false)
             } ?: emptyList()
 
             IndicatorUI(indicator, parameterList)

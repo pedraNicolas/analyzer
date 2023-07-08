@@ -6,6 +6,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.psijuego.core.Constants
 import javax.inject.Inject
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
@@ -15,7 +16,7 @@ class DatabaseFirestore @Inject constructor() : FirestoreInterface {
 
     override suspend fun getDataFromFirestore(): List<DocumentSnapshot> =
         suspendCoroutine { continuation ->
-            val collectionRef = Firebase.firestore.collection("indicators")
+            val collectionRef = Firebase.firestore.collection(Constants.INDICATORS)
             val task: Task<QuerySnapshot> = collectionRef.get()
 
             task.addOnSuccessListener { querySnapshot ->
