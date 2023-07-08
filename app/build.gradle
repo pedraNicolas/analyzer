@@ -92,10 +92,11 @@ dependencies {
     //Coroutines Library
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:$coroutines_version"
 
     //Dagger Hilt Library
     implementation "com.google.dagger:hilt-android:$hilt_version"
-    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+    annotationProcessor  "com.google.dagger:hilt-android-compiler:$hilt_version"
 
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.12.0'

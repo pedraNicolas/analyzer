@@ -1,4 +1,4 @@
-package com.psijuego.data.model
+package com.psijuego.data.model.ui
 
 import android.net.Uri
 
