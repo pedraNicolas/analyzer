@@ -10,43 +10,13 @@
 
     <ImageView
         android:id="@+id/ivMentalHearth"
-        android:layout_width="@dimen/dp64"
-        android:layout_height="@dimen/dp64"
+        android:layout_width="@dimen/dp272"
+        android:layout_height="@dimen/dp272"
         android:layout_marginTop="@dimen/dp136"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_mental_hearth" />
-
-
-
-    <TextView
-        android:id="@+id/tvAppName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp8"
-        android:fontFamily="@font/open_sans_bold"
-        android:text="Analizador \n de dibujos"
-        android:textAlignment="center"
-        android:textColor="@color/blue_mental_hearth"
-        android:textSize="@dimen/dp24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivMentalHearth" />
-
-    <TextView
-        android:id="@+id/tvAppDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp16"
-        android:fontFamily="@font/open_sans_bold"
-        android:text="Aqui pondriamos una \n descripcion de que hacemos \n en la App"
-        android:textAlignment="center"
-        android:textSize="@dimen/dp16"
-        android:textColor="@color/text_gray"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvAppName" />
+        app:srcCompat="@drawable/logo_version_2" />
 
     <Button
         android:id="@+id/btnStart"
@@ -61,7 +31,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvAppDescription" />
+        android:layout_marginBottom="@dimen/dp64"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
