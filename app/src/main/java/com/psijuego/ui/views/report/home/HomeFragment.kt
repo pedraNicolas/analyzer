@@ -14,7 +14,7 @@ import androidx.navigation.Navigation
 import com.psijuego.R
 import com.psijuego.core.utils.UtilFile
 import com.psijuego.core.utils.UtilUploadFiles
-import com.psijuego.data.model.WelcomeUI
+import com.psijuego.data.model.ui.WelcomeUI
 import com.psijuego.databinding.FragmentHomeBinding
 import com.psijuego.ui.views.report.ReportViewModel
 import com.bumptech.glide.Glide
