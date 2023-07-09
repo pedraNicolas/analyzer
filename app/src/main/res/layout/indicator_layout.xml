@@ -39,18 +39,19 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginVertical="@dimen/dp16"
-                android:fontFamily="@font/open_sans_regular"
+                android:fontFamily="@font/open_sans_bold"
                 android:text="TextView"
                 android:textAlignment="center"
                 android:textSize="@dimen/dp14"
                 android:textStyle="italic" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvIndicators"
+                android:id="@+id/rvParameters"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:overScrollMode="never"
                 tools:itemCount="15"
+                android:layout_marginTop="@dimen/dp32"
                 tools:listitem="@layout/item_layout" />
 
             <Button
