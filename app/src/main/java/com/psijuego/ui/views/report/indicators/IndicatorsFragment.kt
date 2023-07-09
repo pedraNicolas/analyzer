@@ -6,21 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.psijuego.R
 import com.psijuego.data.model.ui.IndicatorUI
-import com.psijuego.data.model.ui.ParameterUI
 import com.psijuego.databinding.FragmentIndicatorsBinding
 import com.psijuego.ui.views.report.ReportViewModel
 import com.psijuego.ui.views.report.indicators.adapter.CirclePagerIndicatorDecoration
-import com.psijuego.ui.views.report.indicators.adapter.IndicatorRvAdapter
+import com.psijuego.ui.views.report.indicators.adapter.indicator.IndicatorRvAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class IndicatorsFragment : Fragment() {
+class IndicatorsFragment : Fragment(), IndicatorListener {
 
     private lateinit var binding: FragmentIndicatorsBinding
     private val viewModel: ReportViewModel by viewModels()
@@ -39,7 +37,6 @@ class IndicatorsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setUpRecyclerView()
         setUpViewModel()
-        //setUpComponents()
     }
 
     private fun setUpViewModel() {
@@ -57,10 +54,6 @@ class IndicatorsFragment : Fragment() {
         }
     }
 
-    private fun initRecyclerView() {
-
-    }
-
     private fun setUpRecyclerView() {
         with(binding) {
             rvIndicators.layoutManager =
@@ -68,18 +61,21 @@ class IndicatorsFragment : Fragment() {
             val snapHelper = PagerSnapHelper()
             snapHelper.attachToRecyclerView(rvIndicators)
             indicatorRvAdapter = IndicatorRvAdapter(indicatorList)
+            indicatorRvAdapter.setListener(this@IndicatorsFragment)
             rvIndicators.addItemDecoration(CirclePagerIndicatorDecoration(requireContext()))
             rvIndicators.adapter = indicatorRvAdapter
         }
     }
 
-//    private fun setUpComponents(){
-//        binding.btnNext.setOnClickListener{
-//            setUpNavigation(it, R.id.action_indicatorsFragment_to_conclusionsFragment)
-//        }
-//    }
-
     private fun setUpNavigation(view: View, navigation: Int) {
         Navigation.findNavController(view).navigate(navigation)
+    }
+
+    override fun onItemStateChanged(indicatorUIPosition: Int, parameterPosition: Int, newStatus: Boolean) {
+        indicatorList[indicatorUIPosition].parameter[parameterPosition].selected = newStatus
+    }
+
+    override fun onNextClicked() {
+        setUpNavigation(binding.root, R.id.action_indicatorsFragment_to_conclusionsFragment)
     }
 }
