@@ -17,13 +17,18 @@ class ParameterRvViewHolder(
         parameterPosition: Int
     ) {
         with(binding) {
-            if(item.name != Constants.DESCRIPTION){
+            if (item.name != Constants.DESCRIPTION) {
                 indicatorName.text = UtilText.formatTextMaxCharactersPerLine(item.name, 23)
-                listener?.onItemStateChanged(
-                    indicatorUIPosition,
-                    parameterPosition,
-                    btnState.isChecked
-                )
+                btnState.isChecked = item.selected
+                btnState.setOnClickListener {
+                    val bool = btnState.isChecked
+                    listener?.onItemStateChanged(
+                        indicatorUIPosition,
+                        item.name,
+                        bool
+                    )
+                }
+
             }
         }
 
