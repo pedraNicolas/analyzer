@@ -2,6 +2,8 @@ package com.psijuego.core
 
 class Constants {
 
-    companion object{
+    companion object {
+        const val INDICATORS = "indicators"
+        const val DESCRIPTION = "description"
     }
 }

@@ -20,4 +20,5 @@
     <dimen name= "dp152">152dp</dimen>
     <dimen name= "dp184">184dp</dimen>
     <dimen name= "dp208">208dp</dimen>
+    <dimen name= "dp272">272dp</dimen>
 </resources>
