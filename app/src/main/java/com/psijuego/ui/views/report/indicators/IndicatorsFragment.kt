@@ -23,7 +23,7 @@ class IndicatorsFragment : Fragment(), IndicatorListener {
     private lateinit var binding: FragmentIndicatorsBinding
     private val viewModel: ReportViewModel by viewModels()
     private lateinit var indicatorRvAdapter: IndicatorRvAdapter
-    private var indicatorList = ArrayList<IndicatorUI>()
+    private var indicatorList = listOf<IndicatorUI>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,22 +35,21 @@ class IndicatorsFragment : Fragment(), IndicatorListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setUpRecyclerView()
         setUpViewModel()
+        setUpRecyclerView()
     }
 
     private fun setUpViewModel() {
         viewModel.getIndicatorsList()
         viewModel.indicatorUI.observe(viewLifecycleOwner) { list ->
             fillIndicatorList(list)
-
         }
     }
 
     private fun fillIndicatorList(list: List<IndicatorUI>) {
         if (list.isNotEmpty()) {
-            indicatorList.addAll(list)
-            indicatorRvAdapter.notifyDataSetChanged()
+            indicatorList = list
+            indicatorRvAdapter.updateList(list)
         }
     }
 
@@ -71,11 +70,18 @@ class IndicatorsFragment : Fragment(), IndicatorListener {
         Navigation.findNavController(view).navigate(navigation)
     }
 
-    override fun onItemStateChanged(indicatorUIPosition: Int, parameterPosition: Int, newStatus: Boolean) {
-        indicatorList[indicatorUIPosition].parameter[parameterPosition].selected = newStatus
+    override fun onItemStateChanged(indicatorUIPosition: Int, parameterName: String, newStatus: Boolean) {
+        indicatorList[indicatorUIPosition].parameter.forEach { element ->
+            if(element.name == parameterName){
+                element.selected = newStatus
+            }
+        }
+        binding.rvIndicators.scrollToPosition(indicatorUIPosition)
+        indicatorRvAdapter.updateList(indicatorList)
     }
 
     override fun onNextClicked() {
+        viewModel.setIndicatorUI(indicatorList)
         setUpNavigation(binding.root, R.id.action_indicatorsFragment_to_conclusionsFragment)
     }
 }

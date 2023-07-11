@@ -9,7 +9,7 @@ import com.psijuego.databinding.ItemLayoutBinding
 import com.psijuego.ui.views.report.indicators.IndicatorListener
 
 class ParameterRvAdapter(
-    private val indicatorUI: IndicatorUI,
+    private val indicatorUI: List<ParameterUI>,
     private val indicatorUIPosition: Int
 ) : RecyclerView.Adapter<ParameterRvViewHolder>() {
 
@@ -21,13 +21,13 @@ class ParameterRvAdapter(
         return ParameterRvViewHolder(binding)
     }
 
-    override fun getItemCount(): Int = indicatorUI.parameter.size
+    override fun getItemCount(): Int = indicatorUI.size
     fun setListener(listener: IndicatorListener) {
         this.listener = listener
     }
 
     override fun onBindViewHolder(holder: ParameterRvViewHolder, position: Int) {
-        val item = indicatorUI.parameter[position]
+        val item = indicatorUI[position]
         holder.render(item, listener, indicatorUIPosition, position)
     }
 }

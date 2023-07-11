@@ -20,19 +20,32 @@ class ReportViewModel @Inject constructor(
     private val _welcomeUI = MutableLiveData<WelcomeUI>()
     val welcomeUI: LiveData<WelcomeUI> = _welcomeUI
 
-    private val _indicatorUI = MutableLiveData<List<IndicatorUI>>()
+    private var _indicatorUI = MutableLiveData<List<IndicatorUI>>()
     val indicatorUI: LiveData<List<IndicatorUI>> = _indicatorUI
+
+    private val _indicatorUIFinalList = MutableLiveData<List<IndicatorUI>>()
+    val indicatorUIFinalList: LiveData<List<IndicatorUI>> = _indicatorUIFinalList
+
 
     fun setWelcomeUI(data: WelcomeUI) {
         _welcomeUI.value = data
     }
 
+    fun setIndicatorUI(data: List<IndicatorUI>) {
+        _indicatorUIFinalList.postValue(data)
+    }
+
     fun getIndicatorsList() {
-        viewModelScope.launch {
-            val list = indicatorsUseCase.getIndicatorsList()
-            if (list.isNotEmpty()) {
-                _indicatorUI.postValue(list)
+        if (_indicatorUIFinalList.value.isNullOrEmpty()) {
+            viewModelScope.launch {
+                val list = indicatorsUseCase.getIndicatorsList()
+                if (list.isNotEmpty()) {
+                    _indicatorUI.postValue(list)
+                }
             }
+        } else {
+            _indicatorUI = _indicatorUIFinalList
         }
+
     }
 }
