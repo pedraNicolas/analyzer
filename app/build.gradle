@@ -14,7 +14,7 @@ android {
     defaultConfig {
         def versionMajor = 0
         def versionMinor = 0
-        def versionPatch = 1
+        def versionPatch = 2
         applicationId "com.psijuego"
         minSdk 21
         targetSdk 33
