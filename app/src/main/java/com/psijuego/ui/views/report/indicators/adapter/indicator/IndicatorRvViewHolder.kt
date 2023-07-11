@@ -47,7 +47,8 @@ class IndicatorRvViewHolder(
             }
             rvParameters.layoutManager =
                 LinearLayoutManager(rvParameters.context, LinearLayoutManager.VERTICAL, false)
-            parameterRvAdapter = ParameterRvAdapter(item, indicatorUIPosition)
+            val filteredItem = item.parameter.filter { parameterUI ->  parameterUI.name != Constants.DESCRIPTION}
+            parameterRvAdapter = ParameterRvAdapter(filteredItem, indicatorUIPosition)
             if (listener != null) {
                 parameterRvAdapter.setListener(listener)
             }
