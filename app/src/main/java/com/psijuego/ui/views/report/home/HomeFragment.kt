@@ -14,7 +14,7 @@ import androidx.navigation.Navigation
 import com.psijuego.R
 import com.psijuego.core.utils.UtilFile
 import com.psijuego.core.utils.UtilUploadFiles
-import com.psijuego.data.model.ui.WelcomeUI
+import com.psijuego.data.model.ui.HomeUI
 import com.psijuego.databinding.FragmentHomeBinding
 import com.psijuego.ui.views.report.ReportViewModel
 import com.bumptech.glide.Glide
@@ -27,7 +27,7 @@ class HomeFragment : Fragment() {
     private val utilFile = UtilFile()
 
     private lateinit var binding: FragmentHomeBinding
-    private var welcomeUI: WelcomeUI = WelcomeUI()
+    private var homeUI: HomeUI = HomeUI()
     private val viewModel: ReportViewModel by viewModels()
     private var mUri: Uri? = null
 
@@ -73,7 +73,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun onNext() {
-        viewModel.setWelcomeUI(bindToObject())
+        viewModel.setHomeUI(bindToObject())
         Navigation.findNavController(binding.root)
             .navigate(R.id.action_homeFragment_to_indicatorsFragment)
     }
@@ -138,23 +138,23 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun bindToObject(): WelcomeUI {
+    private fun bindToObject(): HomeUI {
         with(binding) {
-            tvProfessionalName.text?.toString()?.let { welcomeUI.nameProfessional = it }
-            tvPatientName.text?.toString()?.let { welcomeUI.namePatient = it }
-            tvRegistrationNumber.text?.toString()?.let { welcomeUI.numberRegistration = it }
-            welcomeUI.uri = mUri
+            tvProfessionalName.text?.toString()?.let { homeUI.nameProfessional = it }
+            tvPatientName.text?.toString()?.let { homeUI.namePatient = it }
+            tvRegistrationNumber.text?.toString()?.let { homeUI.numberRegistration = it }
+            homeUI.uri = mUri
         }
-        return welcomeUI
+        return homeUI
     }
 
     private fun bindToForm() {
-        if (welcomeUI != null) {
+        if (homeUI != null) {
             with(binding) {
-                welcomeUI.nameProfessional.let { tvProfessionalName.setText(it) }
-                welcomeUI.namePatient.let { tvPatientName.setText(it) }
-                welcomeUI.numberRegistration.let { tvRegistrationNumber.setText(it) }
-                showImage(welcomeUI.uri)
+                homeUI.nameProfessional.let { tvProfessionalName.setText(it) }
+                homeUI.namePatient.let { tvPatientName.setText(it) }
+                homeUI.numberRegistration.let { tvRegistrationNumber.setText(it) }
+                showImage(homeUI.uri)
             }
         }
     }

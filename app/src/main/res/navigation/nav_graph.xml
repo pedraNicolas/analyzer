@@ -25,9 +25,9 @@
     </fragment>
     <fragment
         android:id="@+id/indicatorsFragment"
-        android:name="com.psijuego.ui.views.report.indicators.IndicatorsFragment"
+        android:name="com.psijuego.ui.views.report.indicators.CategoryFragment"
         android:label="fragment_indicators"
-        tools:layout="@layout/fragment_indicators" >
+        tools:layout="@layout/fragment_category" >
         <action
             android:id="@+id/action_indicatorsFragment_to_homeFragment"
             app:destination="@id/homeFragment" />

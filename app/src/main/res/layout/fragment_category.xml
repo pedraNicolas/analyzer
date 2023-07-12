@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.psijuego.ui.views.report.indicators.IndicatorsFragment">
+    tools:context="com.psijuego.ui.views.report.indicators.CategoryFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvIndicators"
+        android:id="@+id/rvCategory"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="@dimen/dp8"
@@ -16,5 +16,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/indicator_layout" />
+        tools:listitem="@layout/category_layout" />
 </androidx.constraintlayout.widget.ConstraintLayout>
