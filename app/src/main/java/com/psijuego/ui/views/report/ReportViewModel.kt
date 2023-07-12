@@ -1,51 +1,46 @@
 package com.psijuego.ui.views.report
 
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.psijuego.core.utils.CoreModule
-import com.psijuego.data.model.ui.IndicatorUI
-import com.psijuego.data.model.ui.WelcomeUI
-import com.psijuego.domain.usecase.IndicatorsUseCase
+import com.psijuego.data.model.ui.CategoryUI
+import com.psijuego.data.model.ui.HomeUI
+import com.psijuego.domain.usecase.CategoryUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class ReportViewModel @Inject constructor(
-    private val indicatorsUseCase: IndicatorsUseCase
+    private val categoryUseCase: CategoryUseCase
 ) : ViewModel() {
-    private val _welcomeUI = MutableLiveData<WelcomeUI>()
-    val welcomeUI: LiveData<WelcomeUI> = _welcomeUI
+    private val _homeUI = MutableLiveData<HomeUI>()
+    val homeUI: LiveData<HomeUI> = _homeUI
 
-    private var _indicatorUI = MutableLiveData<List<IndicatorUI>>()
-    val indicatorUI: LiveData<List<IndicatorUI>> = _indicatorUI
+    private var _categoryUI = MutableLiveData<List<CategoryUI>>()
+    val categoryUI: LiveData<List<CategoryUI>> = _categoryUI
 
-    private val _indicatorUIFinalList = MutableLiveData<List<IndicatorUI>>()
-    val indicatorUIFinalList: LiveData<List<IndicatorUI>> = _indicatorUIFinalList
+    private val _categoryUIFinalList = MutableLiveData<List<CategoryUI>>()
+    val categoryUIFinalList: LiveData<List<CategoryUI>> = _categoryUIFinalList
 
 
-    fun setWelcomeUI(data: WelcomeUI) {
-        _welcomeUI.value = data
+    fun setHomeUI(data: HomeUI) {
+        _homeUI.value = data
     }
 
-    fun setIndicatorUI(data: List<IndicatorUI>) {
-        _indicatorUIFinalList.postValue(data)
+    fun setCategoryUI(data: List<CategoryUI>) {
+        _categoryUI.postValue(data)
     }
 
-    fun getIndicatorsList() {
-        if (_indicatorUIFinalList.value.isNullOrEmpty()) {
-            viewModelScope.launch {
-                val list = indicatorsUseCase.getIndicatorsList()
-                if (list.isNotEmpty()) {
-                    _indicatorUI.postValue(list)
-                }
+    fun getCategoriesList() {
+        viewModelScope.launch {
+            val list = categoryUseCase.getCategoriesList()
+            if (list.isNotEmpty()) {
+                _categoryUI.postValue(list)
             }
-        } else {
-            _indicatorUI = _indicatorUIFinalList
         }
+
 
     }
 }
