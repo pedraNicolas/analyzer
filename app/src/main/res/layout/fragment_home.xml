@@ -17,7 +17,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/tvTitle"
@@ -41,7 +41,8 @@
                 android:backgroundTint="@color/light_gray"
                 android:fontFamily="@font/open_sans_semibold"
                 android:hint="@string/patient_name"
-                android:inputType="textCapSentences"
+                android:inputType="textCapWords"
+                android:minHeight="@dimen/dp48"
                 android:textColor="@color/light_gray"
                 android:textColorHint="@color/hint_light_gray"
                 android:textSize="@dimen/dp16"
@@ -58,7 +59,8 @@
                 android:backgroundTint="@color/light_gray"
                 android:fontFamily="@font/open_sans_semibold"
                 android:hint="@string/professional_name"
-                android:inputType="textCapSentences"
+                android:inputType="textCapWords"
+                android:minHeight="@dimen/dp48"
                 android:textColor="@color/light_gray"
                 android:textColorHint="@color/hint_light_gray"
                 android:textSize="@dimen/dp16"
@@ -76,10 +78,10 @@
                 android:fontFamily="@font/open_sans_semibold"
                 android:hint="@string/registration_number"
                 android:inputType="textCapSentences"
+                android:minHeight="@dimen/dp48"
                 android:textColor="@color/light_gray"
                 android:textColorHint="@color/hint_light_gray"
                 android:textSize="@dimen/dp16"
-                android:gravity="top"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvProfessionalName" />
@@ -142,20 +144,22 @@
                 android:backgroundTint="@color/light_gray"
                 android:fontFamily="@font/open_sans_semibold"
                 android:hint="@string/draw_description"
-                android:textColor="@color/light_gray"
                 android:inputType="textCapSentences|textMultiLine"
+                android:minHeight="@dimen/dp48"
+                android:textColor="@color/light_gray"
                 android:textColorHint="@color/hint_light_gray"
                 android:textSize="@dimen/dp16"
                 app:layout_constraintBottom_toTopOf="@+id/btnNext"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btnUpload"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnUpload" />
 
 
             <Button
                 android:id="@+id/btnNext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minWidth="@dimen/dp48"
                 android:layout_marginHorizontal="@dimen/dp88"
                 android:layout_marginBottom="@dimen/dp64"
                 android:backgroundTint="@color/light_gray"
