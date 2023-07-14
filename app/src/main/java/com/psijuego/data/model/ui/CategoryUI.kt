@@ -1,6 +1,6 @@
 package com.psijuego.data.model.ui
 
-data class IndicatorUI(
+data class CategoryUI(
     var name: String,
     val parameter: List<ParameterUI>
 )

@@ -5,14 +5,14 @@ import com.psijuego.core.Constants
 import com.psijuego.core.utils.UtilText
 import com.psijuego.data.model.ui.ParameterUI
 import com.psijuego.databinding.ItemLayoutBinding
-import com.psijuego.ui.views.report.indicators.IndicatorListener
+import com.psijuego.ui.views.report.indicators.CategoryListener
 
 class ParameterRvViewHolder(
     private val binding: ItemLayoutBinding
 ) : RecyclerView.ViewHolder(binding.root) {
     fun render(
         item: ParameterUI,
-        listener: IndicatorListener?,
+        listener: CategoryListener?,
         indicatorUIPosition: Int,
         parameterPosition: Int
     ) {
