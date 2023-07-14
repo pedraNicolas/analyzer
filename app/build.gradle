@@ -75,7 +75,7 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore-ktx")
 
     //PDF
-    implementation 'com.itextpdf:itextpdf:5.5.9'
+    implementation 'com.itextpdf:itext7-core:8.0.0'
 
     //QRs
     implementation 'com.journeyapps:zxing-android-embedded:4.3.0'

@@ -9,6 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.psijuego.R
@@ -28,7 +30,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private var homeUI: HomeUI = HomeUI()
-    private val viewModel: ReportViewModel by viewModels()
+    private val viewModel: ReportViewModel by activityViewModels<ReportViewModel>()
     private var mUri: Uri? = null
 
     override fun onCreateView(
@@ -53,7 +55,10 @@ class HomeFragment : Fragment() {
     private fun setUpComponents() {
         with(binding) {
             btnNext.setOnClickListener(::preValidate)
-            btnUpload.setOnClickListener(::attachGalleryDraw)
+            btnUpload.setOnClickListener() {
+                attachGalleryDraw()
+
+            }
             ivDelete.setOnClickListener(::onDeleteImage)
         }
     }
@@ -87,6 +92,10 @@ class HomeFragment : Fragment() {
                 btnUpload.visibility = View.VISIBLE
                 ivImage.visibility = View.GONE
                 ivDelete.visibility = View.GONE
+                tvDescription.layoutParams =
+                    (tvDescription.layoutParams as ConstraintLayout.LayoutParams).apply {
+                        topToBottom = R.id.btnUpload
+                    }
             }
         }
     }
@@ -100,7 +109,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-    private fun attachGalleryDraw(view: View) {
+    private fun attachGalleryDraw() {
         resultLauncher.launch(
             Intent.createChooser(
                 utilUploadFiles.pickDrawFromGalleryIntent(),
@@ -125,6 +134,10 @@ class HomeFragment : Fragment() {
                 btnUpload.visibility = View.GONE
                 ivImage.visibility = View.VISIBLE
                 ivDelete.visibility = View.VISIBLE
+                tvDescription.layoutParams =
+                    (tvDescription.layoutParams as ConstraintLayout.LayoutParams).apply {
+                        topToBottom = R.id.ivImage
+                    }
                 showImage(uri)
             }
         }
@@ -143,6 +156,7 @@ class HomeFragment : Fragment() {
             tvProfessionalName.text?.toString()?.let { homeUI.nameProfessional = it }
             tvPatientName.text?.toString()?.let { homeUI.namePatient = it }
             tvRegistrationNumber.text?.toString()?.let { homeUI.numberRegistration = it }
+            tvDescription.text?.toString()?.let { homeUI.drawDescription = it }
             homeUI.uri = mUri
         }
         return homeUI
@@ -154,6 +168,7 @@ class HomeFragment : Fragment() {
                 homeUI.nameProfessional.let { tvProfessionalName.setText(it) }
                 homeUI.namePatient.let { tvPatientName.setText(it) }
                 homeUI.numberRegistration.let { tvRegistrationNumber.setText(it) }
+                homeUI.drawDescription.let { tvDescription.setText(it) }
                 showImage(homeUI.uri)
             }
         }
