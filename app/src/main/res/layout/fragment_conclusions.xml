@@ -15,16 +15,15 @@
         app:layout_constraintTop_toTopOf="parent"
         custom:back="true"
         custom:close="false"
-        custom:textHeader="@string/conclusion">
-    </com.psijuego.core.components.HeaderLayout>
+        custom:textHeader="@string/conclusions"></com.psijuego.core.components.HeaderLayout>
 
-    <TextView
+    <EditText
         android:id="@+id/tvConclusion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="TextView"
         android:layout_marginTop="@dimen/dp64"
+        android:layout_weight="1"
+        android:hint="@string/report_conclusions"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header" />
@@ -34,31 +33,32 @@
         android:id="@+id/btnQR"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/name_qr_bottom"
-        android:paddingHorizontal="@dimen/dp64"
+        android:layout_marginBottom="@dimen/dp32"
         android:backgroundTint="@color/blue_mental_hearth"
         android:fontFamily="@font/open_sans_bold"
+        android:paddingHorizontal="@dimen/dp64"
+        android:text="@string/name_qr_bottom"
         android:textSize="@dimen/dp16"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnCancel"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
+    <TextView
         android:id="@+id/btnCancel"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="@string/cancel"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="@dimen/dp48"
         android:layout_marginBottom="@dimen/dp32"
-        android:backgroundTint="@color/red"
+        android:layout_weight="1"
         android:fontFamily="@font/open_sans_bold"
-        android:textSize="@dimen/dp16"
+        android:gravity="center"
         android:paddingHorizontal="@dimen/dp64"
-        />
+        android:text="@string/cancel"
+        android:textAlignment="center"
+        android:textColor="@color/red"
+        android:textSize="@dimen/dp16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,5 +6,6 @@ data class HomeUI(
     var namePatient: String = "",
     var nameProfessional: String = "",
     var numberRegistration: String? = null,
+    var drawDescription: String? = null,
     var uri: Uri? = null
 )
