@@ -60,11 +60,11 @@ class HomeFragment : Fragment() {
 
     private fun preValidate(view: View) {
         with(binding) {
-            if (tvPatientName.text.isEmpty()) {
+            if (tvPatientName.text.isNullOrEmpty()) {
                 tvPatientName.error = getString(R.string.invalid_field)
                 return
             }
-            if (tvProfessionalName.text.isEmpty()) {
+            if (tvProfessionalName.text.isNullOrEmpty()) {
                 tvProfessionalName.error = getString(R.string.invalid_field)
                 return
             }
@@ -84,7 +84,7 @@ class HomeFragment : Fragment() {
         if (deleted) {
             mUri = null
             with(binding) {
-                btnUpload.visibility = View.VISIBLE
+                llUpload.visibility = View.VISIBLE
                 ivImage.visibility = View.GONE
                 ivDelete.visibility = View.GONE
             }
@@ -122,7 +122,7 @@ class HomeFragment : Fragment() {
         if (mUri != null) {
             val uri = mUri
             with(binding) {
-                btnUpload.visibility = View.GONE
+                llUpload.visibility = View.GONE
                 ivImage.visibility = View.VISIBLE
                 ivDelete.visibility = View.VISIBLE
                 showImage(uri)
