@@ -6,14 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.psijuego.R
 import com.psijuego.data.model.ui.CategoryUI
 import com.psijuego.databinding.FragmentCategoryBinding
-import com.psijuego.ui.views.report.ReportViewModel
+import com.psijuego.ui.views.report.SharedViewModel
 import com.psijuego.ui.views.report.indicators.adapter.category.CirclePagerIndicatorDecoration
 import com.psijuego.ui.views.report.indicators.adapter.category.CategoryRvAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,7 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class CategoryFragment : Fragment(), CategoryListener {
 
     private lateinit var binding: FragmentCategoryBinding
-    private val viewModel: ReportViewModel by activityViewModels<ReportViewModel>()
+    private val viewModel: SharedViewModel by activityViewModels<SharedViewModel>()
     private lateinit var categoryRvAdapter: CategoryRvAdapter
     private var categoriesList = listOf<CategoryUI>()
     override fun onCreateView(
