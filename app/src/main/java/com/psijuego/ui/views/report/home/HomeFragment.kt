@@ -11,14 +11,13 @@ import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.psijuego.R
 import com.psijuego.core.utils.UtilFile
 import com.psijuego.core.utils.UtilUploadFiles
 import com.psijuego.data.model.ui.HomeUI
 import com.psijuego.databinding.FragmentHomeBinding
-import com.psijuego.ui.views.report.ReportViewModel
+import com.psijuego.ui.views.report.SharedViewModel
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -30,7 +29,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private var homeUI: HomeUI = HomeUI()
-    private val viewModel: ReportViewModel by activityViewModels<ReportViewModel>()
+    private val viewModel: SharedViewModel by activityViewModels<SharedViewModel>()
     private var mUri: Uri? = null
 
     override fun onCreateView(

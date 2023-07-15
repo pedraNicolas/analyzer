@@ -7,14 +7,16 @@ import androidx.lifecycle.viewModelScope
 import com.psijuego.data.model.ui.CategoryUI
 import com.psijuego.data.model.ui.HomeUI
 import com.psijuego.domain.usecase.CategoryUseCase
+import com.psijuego.domain.usecase.ConclusionUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.io.File
 import javax.inject.Inject
-import javax.inject.Singleton
 
 @HiltViewModel
-class ReportViewModel @Inject constructor(
-    private val categoryUseCase: CategoryUseCase
+class SharedViewModel @Inject constructor(
+    private val categoryUseCase: CategoryUseCase,
+    private val conclusionUseCase: ConclusionUseCase
 ) : ViewModel() {
 
     private val _homeUI = MutableLiveData<HomeUI>()
@@ -45,7 +47,9 @@ class ReportViewModel @Inject constructor(
                 _categoryUI.postValue(list)
             }
         }
+    }
 
-
+    fun uploadDocument(file: File, getUrl:(String) -> Unit){
+        conclusionUseCase.uploadDocument(file, getUrl)
     }
 }
