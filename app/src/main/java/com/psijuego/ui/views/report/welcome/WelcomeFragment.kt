@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import com.psijuego.R
+import com.psijuego.core.utils.UtilPDF
 import com.psijuego.databinding.FragmentWelcomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 
