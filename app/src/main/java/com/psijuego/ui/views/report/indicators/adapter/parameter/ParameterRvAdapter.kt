@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.psijuego.data.model.ui.ParameterUI
-import com.psijuego.databinding.ItemLayoutBinding
+import com.psijuego.databinding.ItemParametersBinding
 import com.psijuego.ui.views.report.indicators.CategoryListener
 
 class ParameterRvAdapter(
@@ -16,7 +16,7 @@ class ParameterRvAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ParameterRvViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = ItemLayoutBinding.inflate(layoutInflater, parent, false)
+        val binding = ItemParametersBinding.inflate(layoutInflater, parent, false)
         return ParameterRvViewHolder(binding)
     }
 

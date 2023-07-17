@@ -2,6 +2,7 @@ package com.psijuego.ui.views.report.home
 
 import android.app.Activity
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import com.psijuego.R
@@ -58,6 +60,12 @@ class HomeFragment : Fragment() {
                 attachGalleryDraw()
 
             }
+            btnUpload.imageTintList = ColorStateList.valueOf(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.primary_material3_40
+                )
+            )
             ivDelete.setOnClickListener(::onDeleteImage)
         }
     }
@@ -91,9 +99,9 @@ class HomeFragment : Fragment() {
                 llUpload.visibility = View.VISIBLE
                 ivImage.visibility = View.GONE
                 ivDelete.visibility = View.GONE
-                tvDescription.layoutParams =
-                    (tvDescription.layoutParams as ConstraintLayout.LayoutParams).apply {
-                        topToBottom = R.id.btnUpload
+                tvDescriptionLabel.layoutParams =
+                    (tvDescriptionLabel.layoutParams as ConstraintLayout.LayoutParams).apply {
+                        topToBottom = R.id.llUpload
                     }
             }
         }
@@ -133,8 +141,8 @@ class HomeFragment : Fragment() {
                 llUpload.visibility = View.GONE
                 ivImage.visibility = View.VISIBLE
                 ivDelete.visibility = View.VISIBLE
-                tvDescription.layoutParams =
-                    (tvDescription.layoutParams as ConstraintLayout.LayoutParams).apply {
+                tvDescriptionLabel.layoutParams =
+                    (tvDescriptionLabel.layoutParams as ConstraintLayout.LayoutParams).apply {
                         topToBottom = R.id.ivImage
                     }
                 showImage(uri)

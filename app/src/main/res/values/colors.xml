@@ -11,4 +11,6 @@
     <color name="red">#E72525</color>
     <color name="active_indicator_color">#808080</color>
     <color name="inactive_indicator_color">#C0C0C0</color>
+    <color name="primary_material3_40">#6750A4</color>
+    <color name="primary_material3_50">#7F67BE</color>
 </resources>
