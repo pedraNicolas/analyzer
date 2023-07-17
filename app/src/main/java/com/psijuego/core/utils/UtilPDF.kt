@@ -33,19 +33,13 @@ import java.util.Date
 import java.util.Locale
 import kotlin.Exception
 
-class UtilPDF(homeUI: HomeUI, listCategoryUI: List<CategoryUI>, conclusion: String) {
+class UtilPDF() {
 
     private val context = CoreModule.getContext()
 
-    init {
-        createPdf(homeUI, listCategoryUI, conclusion)
-    }
-
     @Throws(FileNotFoundException::class)
-    private fun createPdf(homeUI: HomeUI, listCategoryUI: List<CategoryUI>, conclusion: String) {
-        val pdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-            .toString()
-
+    fun createPdf(homeUI: HomeUI, listCategoryUI: List<CategoryUI>, conclusion: String): File {
+        val pdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString()
         val patientName = homeUI.namePatient.lowercase(Locale.getDefault()).replace(" ", "_")
         val professionalName = homeUI.nameProfessional.lowercase(Locale.getDefault()).replace(" ", "_")
 
@@ -77,6 +71,8 @@ class UtilPDF(homeUI: HomeUI, listCategoryUI: List<CategoryUI>, conclusion: Stri
         )
         document.close()
         outputStream.close()
+
+        return file
     }
 
     private fun addTable(homeUI: HomeUI): Table {

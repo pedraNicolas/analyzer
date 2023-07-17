@@ -2,6 +2,7 @@ package com.psijuego.ui.views.report.home
 
 import android.app.Activity
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,15 +11,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.psijuego.R
 import com.psijuego.core.utils.UtilFile
 import com.psijuego.core.utils.UtilUploadFiles
 import com.psijuego.data.model.ui.HomeUI
 import com.psijuego.databinding.FragmentHomeBinding
-import com.psijuego.ui.views.report.ReportViewModel
+import com.psijuego.ui.views.report.SharedViewModel
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -30,7 +31,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private var homeUI: HomeUI = HomeUI()
-    private val viewModel: ReportViewModel by activityViewModels<ReportViewModel>()
+    private val viewModel: SharedViewModel by activityViewModels<SharedViewModel>()
     private var mUri: Uri? = null
 
     override fun onCreateView(
@@ -59,17 +60,23 @@ class HomeFragment : Fragment() {
                 attachGalleryDraw()
 
             }
+            btnUpload.imageTintList = ColorStateList.valueOf(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.primary_material3_40
+                )
+            )
             ivDelete.setOnClickListener(::onDeleteImage)
         }
     }
 
     private fun preValidate(view: View) {
         with(binding) {
-            if (tvPatientName.text.isEmpty()) {
+            if (tvPatientName.text.isNullOrEmpty()) {
                 tvPatientName.error = getString(R.string.invalid_field)
                 return
             }
-            if (tvProfessionalName.text.isEmpty()) {
+            if (tvProfessionalName.text.isNullOrEmpty()) {
                 tvProfessionalName.error = getString(R.string.invalid_field)
                 return
             }
@@ -89,12 +96,12 @@ class HomeFragment : Fragment() {
         if (deleted) {
             mUri = null
             with(binding) {
-                btnUpload.visibility = View.VISIBLE
+                llUpload.visibility = View.VISIBLE
                 ivImage.visibility = View.GONE
                 ivDelete.visibility = View.GONE
-                tvDescription.layoutParams =
-                    (tvDescription.layoutParams as ConstraintLayout.LayoutParams).apply {
-                        topToBottom = R.id.btnUpload
+                tvDescriptionLabel.layoutParams =
+                    (tvDescriptionLabel.layoutParams as ConstraintLayout.LayoutParams).apply {
+                        topToBottom = R.id.llUpload
                     }
             }
         }
@@ -131,11 +138,11 @@ class HomeFragment : Fragment() {
         if (mUri != null) {
             val uri = mUri
             with(binding) {
-                btnUpload.visibility = View.GONE
+                llUpload.visibility = View.GONE
                 ivImage.visibility = View.VISIBLE
                 ivDelete.visibility = View.VISIBLE
-                tvDescription.layoutParams =
-                    (tvDescription.layoutParams as ConstraintLayout.LayoutParams).apply {
+                tvDescriptionLabel.layoutParams =
+                    (tvDescriptionLabel.layoutParams as ConstraintLayout.LayoutParams).apply {
                         topToBottom = R.id.ivImage
                     }
                 showImage(uri)
