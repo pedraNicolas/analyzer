@@ -13,7 +13,8 @@ import com.psijuego.R
 import com.psijuego.data.model.ui.CategoryUI
 import com.psijuego.databinding.FragmentCategoryBinding
 import com.psijuego.ui.views.report.SharedViewModel
-import com.psijuego.ui.views.report.indicators.adapter.category.CirclePagerIndicatorDecoration
+import com.psijuego.core.components.CirclePagerIndicatorDecoration
+import com.psijuego.core.components.HorizontalSpaceItemDecoration
 import com.psijuego.ui.views.report.indicators.adapter.category.CategoryRvAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -62,6 +63,10 @@ class CategoryFragment : Fragment(), CategoryListener {
             categoryRvAdapter = CategoryRvAdapter(categoriesList)
             categoryRvAdapter.setListener(this@CategoryFragment)
             rvCategory.addItemDecoration(CirclePagerIndicatorDecoration(requireContext()))
+
+            //val horizontalSpacing = resources.getDimensionPixelSize(R.dimen.dp16)
+            //rvCategory.addItemDecoration(HorizontalSpaceItemDecoration(horizontalSpacing))
+
             rvCategory.adapter = categoryRvAdapter
         }
     }

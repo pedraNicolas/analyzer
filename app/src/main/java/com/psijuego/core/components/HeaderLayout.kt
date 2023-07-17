@@ -1,12 +1,15 @@
 package com.psijuego.core.components
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.psijuego.R
 
 class HeaderLayout @JvmOverloads constructor(
@@ -17,8 +20,8 @@ class HeaderLayout @JvmOverloads constructor(
 ) : LinearLayout(context, attrs, defStyleAttr, defStyleRes) {
 
     private lateinit var view: View
-    private lateinit var ivBack: ImageView
-    private lateinit var ivClose: ImageView
+    private lateinit var ivBack: ImageButton
+    private lateinit var ivClose: ImageButton
     private lateinit var tvtitle: TextView
 
     init {
@@ -43,6 +46,19 @@ class HeaderLayout @JvmOverloads constructor(
         ivBack.visibility = if (isBack) View.VISIBLE else View.GONE
         ivClose.visibility = if (isClose) View.VISIBLE else View.GONE
         tvtitle.text = title
+    }
+
+    fun setBackGroundColor(color: Int){
+        val constraintLayout = findViewById<ConstraintLayout>(R.id.constraint)
+        constraintLayout.setBackgroundResource(color)
+    }
+
+    fun setBackDrawable(drawable: Drawable){
+        ivBack.setImageDrawable(drawable)
+    }
+
+    fun setCloseDrawable(drawable: Drawable){
+        ivClose.setImageDrawable(drawable)
     }
 
     fun setTitle(title: String) {

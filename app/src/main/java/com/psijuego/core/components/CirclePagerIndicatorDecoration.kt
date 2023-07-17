@@ -1,4 +1,4 @@
-package com.psijuego.ui.views.report.indicators.adapter.category
+package com.psijuego.core.components
 
 import android.content.Context
 import android.content.res.Resources

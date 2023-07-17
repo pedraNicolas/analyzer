@@ -6,12 +6,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.psijuego.core.Constants
 import com.psijuego.core.utils.UtilText
 import com.psijuego.data.model.ui.CategoryUI
-import com.psijuego.databinding.CategoryLayoutBinding
+import com.psijuego.databinding.ItemCategoryLayoutBinding
 import com.psijuego.ui.views.report.indicators.CategoryListener
 import com.psijuego.ui.views.report.indicators.adapter.parameter.ParameterRvAdapter
 
 class CategoryRvViewHolder(
-    private val binding: CategoryLayoutBinding,
+    private val binding: ItemCategoryLayoutBinding,
     private val size: Int
 ) : RecyclerView.ViewHolder(binding.root) {
 
@@ -23,7 +23,7 @@ class CategoryRvViewHolder(
         listener: CategoryListener?
     ) {
         with(binding) {
-            headerLayout.setTitle(UtilText.formatTextMaxCharactersPerLine(item.name, 20))
+            headerLayout.setTitle(item.name)
             item.parameter.let {
                 for (parameter in it) {
                     if (parameter.name == Constants.DESCRIPTION) {
