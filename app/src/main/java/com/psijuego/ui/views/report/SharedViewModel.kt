@@ -25,6 +25,20 @@ class SharedViewModel @Inject constructor(
     private var _categoryUI = MutableLiveData<List<CategoryUI>>()
     val categoryUI: LiveData<List<CategoryUI>> = _categoryUI
 
+    private var _conclusion = MutableLiveData<String>()
+    val conclusion: LiveData<String> = _conclusion
+
+    private var _pdfDocument = MutableLiveData<File>()
+    val pdfDocument: LiveData<File> = _pdfDocument
+
+    fun setConclusion(conclusion: String){
+        _conclusion.postValue(conclusion)
+    }
+
+    fun getConclusion(): String?{
+        return conclusion.value
+    }
+
     fun setHomeUI(data: HomeUI) {
         _homeUI.postValue(data)
     }

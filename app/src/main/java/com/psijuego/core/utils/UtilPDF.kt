@@ -39,11 +39,22 @@ class UtilPDF() {
 
     @Throws(FileNotFoundException::class)
     fun createPdf(homeUI: HomeUI, listCategoryUI: List<CategoryUI>, conclusion: String): File {
-        val pdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString()
+        val pdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+            .toString()
         val patientName = homeUI.namePatient.lowercase(Locale.getDefault()).replace(" ", "_")
-        val professionalName = homeUI.nameProfessional.lowercase(Locale.getDefault()).replace(" ", "_")
+        val professionalName =
+            homeUI.nameProfessional.lowercase(Locale.getDefault()).replace(" ", "_")
 
         val file = File(pdfPath, "${getDate()}${patientName}_${professionalName}.pdf")
+
+        if (!file.exists()) {
+            try {
+                file.createNewFile()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+
         val outputStream = FileOutputStream(file)
         val writer = PdfWriter(outputStream)
         val pdfDocument = PdfDocument(writer)
@@ -51,7 +62,7 @@ class UtilPDF() {
         val document = Document(pdfDocument)
 
 
-        document.add(addTable(homeUI))
+        document.add(addHeaderTable(homeUI))
         document.add(Paragraph("\n"))
         document.add(addImageAndDescriptionTable(homeUI))
         document.add(Paragraph("\n"))
@@ -75,7 +86,7 @@ class UtilPDF() {
         return file
     }
 
-    private fun addTable(homeUI: HomeUI): Table {
+    private fun addHeaderTable(homeUI: HomeUI): Table {
         val columnWidth = floatArrayOf(510f, 165f, 822f)
         val table = Table(columnWidth)
 
@@ -235,7 +246,11 @@ class UtilPDF() {
             if (showCategory(categoryUI)) {
                 table.addCell(addCategoryItem(categoryUI).setFontSize(14f).setBold())
                 categoryUI.parameter.find { it.name == Constants.DESCRIPTION }
-                    ?.let { if(!it.description.isNullOrEmpty()) table.addCell(addCategoryDescription(it).setItalic()) }
+                    ?.let {
+                        if (!it.description.isNullOrEmpty()) table.addCell(
+                            addCategoryDescription(it).setItalic()
+                        )
+                    }
                 categoryUI.parameter.filter { it.selected && it.name != Constants.DESCRIPTION }
                     .forEach { parameterUI ->
                         val parameterName = "    • ${parameterUI.name}"

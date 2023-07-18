@@ -15,6 +15,8 @@
     <string name="conclusions">Conclusiones</string>
     <string name="report_conclusions">Conclusiones del reporte</string>
     <string name="draw_and_description">Dibujo y descripción realizada</string>
+    <string name="more">Ver más</string>
+    <string name="share">Compartir</string>
 
 
 </resources>
