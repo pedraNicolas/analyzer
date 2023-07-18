@@ -5,15 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.psijuego.R
 import com.psijuego.data.model.ui.CategoryUI
 import com.psijuego.databinding.FragmentCategoryBinding
-import com.psijuego.ui.views.report.ReportViewModel
-import com.psijuego.ui.views.report.indicators.adapter.category.CirclePagerIndicatorDecoration
+import com.psijuego.ui.views.report.SharedViewModel
+import com.psijuego.core.components.CirclePagerIndicatorDecoration
+import com.psijuego.core.components.HorizontalSpaceItemDecoration
 import com.psijuego.ui.views.report.indicators.adapter.category.CategoryRvAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,7 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class CategoryFragment : Fragment(), CategoryListener {
 
     private lateinit var binding: FragmentCategoryBinding
-    private val viewModel: ReportViewModel by viewModels()
+    private val viewModel: SharedViewModel by activityViewModels<SharedViewModel>()
     private lateinit var categoryRvAdapter: CategoryRvAdapter
     private var categoriesList = listOf<CategoryUI>()
     override fun onCreateView(
@@ -62,6 +63,10 @@ class CategoryFragment : Fragment(), CategoryListener {
             categoryRvAdapter = CategoryRvAdapter(categoriesList)
             categoryRvAdapter.setListener(this@CategoryFragment)
             rvCategory.addItemDecoration(CirclePagerIndicatorDecoration(requireContext()))
+
+            //val horizontalSpacing = resources.getDimensionPixelSize(R.dimen.dp16)
+            //rvCategory.addItemDecoration(HorizontalSpaceItemDecoration(horizontalSpacing))
+
             rvCategory.adapter = categoryRvAdapter
         }
     }

@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.psijuego.core.utils.GenericDiffUtil
 import com.psijuego.data.model.ui.CategoryUI
-import com.psijuego.databinding.CategoryLayoutBinding
+import com.psijuego.databinding.ItemCategoryLayoutBinding
 import com.psijuego.ui.views.report.indicators.CategoryListener
 
 class CategoryRvAdapter(
@@ -23,7 +23,7 @@ class CategoryRvAdapter(
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryRvViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = CategoryLayoutBinding.inflate(layoutInflater, parent, false)
+        val binding = ItemCategoryLayoutBinding.inflate(layoutInflater, parent, false)
         return CategoryRvViewHolder(binding, itemCount)
     }
 
