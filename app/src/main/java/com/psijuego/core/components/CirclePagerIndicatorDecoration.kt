@@ -1,4 +1,4 @@
-package com.psijuego.ui.views.report.indicators.adapter
+package com.psijuego.core.components
 
 import android.content.Context
 import android.content.res.Resources
@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import com.psijuego.R
-import kotlin.math.abs
 import kotlin.math.max
 
 class CirclePagerIndicatorDecoration(context: Context) : ItemDecoration() {

@@ -3,18 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.psijuego.ui.views.report.indicators.IndicatorsFragment">
+    tools:context="com.psijuego.ui.views.report.indicators.CategoryFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvIndicators"
+        android:id="@+id/rvCategory"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="@dimen/dp8"
+        android:clipToPadding="false"
         android:orientation="horizontal"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/indicator_layout" />
+        tools:listitem="@layout/item_category_layout" />
 </androidx.constraintlayout.widget.ConstraintLayout>

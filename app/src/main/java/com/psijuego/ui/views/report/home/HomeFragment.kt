@@ -2,6 +2,7 @@ package com.psijuego.ui.views.report.home
 
 import android.app.Activity
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,14 +10,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.fragment.app.viewModels
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import com.psijuego.R
 import com.psijuego.core.utils.UtilFile
 import com.psijuego.core.utils.UtilUploadFiles
-import com.psijuego.data.model.ui.WelcomeUI
+import com.psijuego.data.model.ui.HomeUI
 import com.psijuego.databinding.FragmentHomeBinding
-import com.psijuego.ui.views.report.ReportViewModel
+import com.psijuego.ui.views.report.SharedViewModel
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,8 +30,8 @@ class HomeFragment : Fragment() {
     private val utilFile = UtilFile()
 
     private lateinit var binding: FragmentHomeBinding
-    private var welcomeUI: WelcomeUI = WelcomeUI()
-    private val viewModel: ReportViewModel by viewModels()
+    private var homeUI: HomeUI = HomeUI()
+    private val viewModel: SharedViewModel by activityViewModels<SharedViewModel>()
     private var mUri: Uri? = null
 
     override fun onCreateView(
@@ -53,18 +56,27 @@ class HomeFragment : Fragment() {
     private fun setUpComponents() {
         with(binding) {
             btnNext.setOnClickListener(::preValidate)
-            btnUpload.setOnClickListener(::attachGalleryDraw)
+            btnUpload.setOnClickListener() {
+                attachGalleryDraw()
+
+            }
+            btnUpload.imageTintList = ColorStateList.valueOf(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.primary_material3_40
+                )
+            )
             ivDelete.setOnClickListener(::onDeleteImage)
         }
     }
 
     private fun preValidate(view: View) {
         with(binding) {
-            if (tvPatientName.text.isEmpty()) {
+            if (tvPatientName.text.isNullOrEmpty()) {
                 tvPatientName.error = getString(R.string.invalid_field)
                 return
             }
-            if (tvProfessionalName.text.isEmpty()) {
+            if (tvProfessionalName.text.isNullOrEmpty()) {
                 tvProfessionalName.error = getString(R.string.invalid_field)
                 return
             }
@@ -73,7 +85,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun onNext() {
-        viewModel.setWelcomeUI(bindToObject())
+        viewModel.setHomeUI(bindToObject())
         Navigation.findNavController(binding.root)
             .navigate(R.id.action_homeFragment_to_indicatorsFragment)
     }
@@ -84,9 +96,13 @@ class HomeFragment : Fragment() {
         if (deleted) {
             mUri = null
             with(binding) {
-                btnUpload.visibility = View.VISIBLE
+                llUpload.visibility = View.VISIBLE
                 ivImage.visibility = View.GONE
                 ivDelete.visibility = View.GONE
+                tvDescriptionLabel.layoutParams =
+                    (tvDescriptionLabel.layoutParams as ConstraintLayout.LayoutParams).apply {
+                        topToBottom = R.id.llUpload
+                    }
             }
         }
     }
@@ -100,7 +116,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-    private fun attachGalleryDraw(view: View) {
+    private fun attachGalleryDraw() {
         resultLauncher.launch(
             Intent.createChooser(
                 utilUploadFiles.pickDrawFromGalleryIntent(),
@@ -122,9 +138,13 @@ class HomeFragment : Fragment() {
         if (mUri != null) {
             val uri = mUri
             with(binding) {
-                btnUpload.visibility = View.GONE
+                llUpload.visibility = View.GONE
                 ivImage.visibility = View.VISIBLE
                 ivDelete.visibility = View.VISIBLE
+                tvDescriptionLabel.layoutParams =
+                    (tvDescriptionLabel.layoutParams as ConstraintLayout.LayoutParams).apply {
+                        topToBottom = R.id.ivImage
+                    }
                 showImage(uri)
             }
         }
@@ -138,23 +158,25 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun bindToObject(): WelcomeUI {
+    private fun bindToObject(): HomeUI {
         with(binding) {
-            tvProfessionalName.text?.toString()?.let { welcomeUI.nameProfessional = it }
-            tvPatientName.text?.toString()?.let { welcomeUI.namePatient = it }
-            tvRegistrationNumber.text?.toString()?.let { welcomeUI.numberRegistration = it }
-            welcomeUI.uri = mUri
+            tvProfessionalName.text?.toString()?.let { homeUI.nameProfessional = it }
+            tvPatientName.text?.toString()?.let { homeUI.namePatient = it }
+            tvRegistrationNumber.text?.toString()?.let { homeUI.numberRegistration = it }
+            tvDescription.text?.toString()?.let { homeUI.drawDescription = it }
+            homeUI.uri = mUri
         }
-        return welcomeUI
+        return homeUI
     }
 
     private fun bindToForm() {
-        if (welcomeUI != null) {
+        if (homeUI != null) {
             with(binding) {
-                welcomeUI.nameProfessional.let { tvProfessionalName.setText(it) }
-                welcomeUI.namePatient.let { tvPatientName.setText(it) }
-                welcomeUI.numberRegistration.let { tvRegistrationNumber.setText(it) }
-                showImage(welcomeUI.uri)
+                homeUI.nameProfessional.let { tvProfessionalName.setText(it) }
+                homeUI.namePatient.let { tvPatientName.setText(it) }
+                homeUI.numberRegistration.let { tvRegistrationNumber.setText(it) }
+                homeUI.drawDescription.let { tvDescription.setText(it) }
+                showImage(homeUI.uri)
             }
         }
     }

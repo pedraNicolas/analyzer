@@ -1,6 +1,6 @@
 package com.psijuego.ui.views.report.indicators
 
-interface IndicatorListener {
+interface CategoryListener {
     fun onItemStateChanged(indicatorUIPosition: Int, parameterName: String, newStatus: Boolean)
     fun onNextClicked()
 }

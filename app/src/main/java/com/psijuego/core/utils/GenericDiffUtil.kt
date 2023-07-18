@@ -1,7 +1,7 @@
 package com.psijuego.core.utils
 
 import androidx.recyclerview.widget.DiffUtil
-import com.psijuego.data.model.ui.IndicatorUI
+import com.psijuego.data.model.ui.CategoryUI
 import com.psijuego.data.model.ui.ParameterUI
 
 class GenericDiffUtil<T>(
@@ -17,8 +17,8 @@ class GenericDiffUtil<T>(
         if (oldList.all { it is ParameterUI } && newList.all { it is ParameterUI }) {
             return (oldList as List<ParameterUI>)[oldItemPosition] == (newList as List<ParameterUI>)[newItemPosition]
         }
-        if (oldList.all { it is IndicatorUI } && newList.all { it is IndicatorUI }) {
-            return (oldList as List<IndicatorUI>)[oldItemPosition] == (newList as List<IndicatorUI>)[newItemPosition]
+        if (oldList.all { it is CategoryUI } && newList.all { it is CategoryUI }) {
+            return (oldList as List<CategoryUI>)[oldItemPosition] == (newList as List<CategoryUI>)[newItemPosition]
         }
         return true
     }
