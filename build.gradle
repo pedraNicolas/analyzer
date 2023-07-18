@@ -7,6 +7,9 @@ buildscript {
         jcenter()
         mavenCentral()
         google()
+        maven {
+            url ("https://jcenter.bintray.com")
+        }
     }
 
     dependencies {

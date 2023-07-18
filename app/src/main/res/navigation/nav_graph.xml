@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/indicatorsFragment">
+    app:startDestination="@id/welcomeFragment">
 
     <fragment
         android:id="@+id/welcomeFragment"
@@ -39,6 +39,15 @@
         android:id="@+id/conclusionsFragment"
         android:name="com.psijuego.ui.views.report.conclusions.ConclusionsFragment"
         android:label="fragment_conclusions"
-        tools:layout="@layout/fragment_conclusions" />
+        tools:layout="@layout/fragment_conclusions" >
+        <action
+            android:id="@+id/action_conclusionsFragment_to_exportReportFragment"
+            app:destination="@id/exportReportFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/exportReportFragment"
+        android:name="com.psijuego.ui.views.report.export.ExportReportFragment"
+        android:label="fragment_export_report"
+        tools:layout="@layout/fragment_export_report" />
 
 </navigation>

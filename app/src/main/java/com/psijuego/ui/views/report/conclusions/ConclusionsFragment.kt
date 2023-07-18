@@ -1,5 +1,6 @@
 package com.psijuego.ui.views.report.conclusions
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -7,8 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.Navigation
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import com.psijuego.R
 import com.psijuego.core.utils.UtilPDF
 import com.psijuego.data.model.ui.CategoryUI
 import com.psijuego.data.model.ui.HomeUI
@@ -39,10 +42,14 @@ class ConclusionsFragment : Fragment() {
     private fun setUpComponents() {
         with(binding) {
             btnQR.setOnClickListener {
-                val conclusion = tvConclusion.text.toString()
-                createPdfDocument(conclusion)
+                viewModel.setConclusion(tvConclusion.text.toString())
+                navigateToPdfView()
             }
         }
+    }
+
+    private fun navigateToPdfView() {
+        Navigation.findNavController(binding.root).navigate(R.id.action_conclusionsFragment_to_exportReportFragment)
     }
 
     private fun initViewModel() {
@@ -50,10 +57,5 @@ class ConclusionsFragment : Fragment() {
         homeUI = viewModel.getHomeUI() ?: HomeUI()
     }
 
-    private fun createPdfDocument(conclusion: String) {
-        val file = UtilPDF().createPdf(homeUI, listCategoryUI, conclusion)
-        viewModel.uploadDocument(file) {url->
-            Log.d("URL", "$url")
-        }
-    }
+
 }
