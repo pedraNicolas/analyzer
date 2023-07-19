@@ -17,10 +17,11 @@
         app:liftOnScroll="true">
 
         <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            style="@style/OverflowMenu"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimaryContainer"
-            style="@style/OverflowMenu"
             app:menu="@menu/top_app_bar"
             app:title="@string/app_name"
             app:titleTextAppearance="?attr/textAppearanceTitleSmall" />
@@ -30,6 +31,16 @@
         android:id="@+id/pdfView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header"/>
+
+    <ImageView
+        android:id="@+id/qrCode"
+        android:layout_width="@dimen/dp272"
+        android:layout_height="@dimen/dp272"
+        tools:src="@drawable/ic_qr"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

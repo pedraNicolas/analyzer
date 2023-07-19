@@ -31,6 +31,9 @@ class SharedViewModel @Inject constructor(
     private var _pdfDocument = MutableLiveData<File>()
     val pdfDocument: LiveData<File> = _pdfDocument
 
+    private var _pdfStorageUrl = MutableLiveData<String>()
+    val pdfStorageUrl: LiveData<String> = _pdfStorageUrl
+
     fun setConclusion(conclusion: String){
         _conclusion.postValue(conclusion)
     }
@@ -63,7 +66,9 @@ class SharedViewModel @Inject constructor(
         }
     }
 
-    fun uploadDocument(file: File, getUrl:(String) -> Unit){
-        conclusionUseCase.uploadDocument(file, getUrl)
+    fun uploadDocument(file: File){
+        conclusionUseCase.uploadDocument(file){
+            _pdfStorageUrl.postValue(it)
+        }
     }
 }

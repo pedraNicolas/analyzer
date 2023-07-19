@@ -3,15 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/new_qr"
+        android:title="@string/new_qr"
+        android:icon="@drawable/ic_qr"
+        app:showAsAction="ifRoom" />
+    <item
         android:id="@+id/share"
         android:title="@string/share"
         android:icon="@drawable/ic_share"
         app:showAsAction="ifRoom" />
 
-    <item
-        android:id="@+id/more"
-        app:showAsAction="never"
-        android:title="@string/more"/>
     <item
         android:id="@+id/about"
         app:showAsAction="never"
