@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import com.google.zxing.BarcodeFormat
+import com.journeyapps.barcodescanner.BarcodeEncoder
 import com.psijuego.R
 import com.psijuego.core.utils.UtilPDF
 import com.psijuego.data.model.ui.CategoryUI
@@ -25,6 +27,7 @@ class ExportReportFragment : Fragment() {
     private lateinit var homeUI: HomeUI
     private lateinit var conclusion: String
     private lateinit var file: File
+    private var isPdfSelect = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,9 +48,7 @@ class ExportReportFragment : Fragment() {
 
     private fun createPdfDocument() {
         file = UtilPDF().createPdf(homeUI, listCategoryUI, conclusion)
-        viewModel.uploadDocument(file) { url ->
-            Log.d("URL", "$url")
-        }
+        viewModel.uploadDocument(file)
         setUpComponent()
     }
 
@@ -56,6 +57,47 @@ class ExportReportFragment : Fragment() {
             if (file != null && file.exists()) {
                 pdfView.fromFile(file).load()
             }
+
+            topAppBar.setOnMenuItemClickListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.new_qr -> {
+                        setUpActionQrButton()
+                        true
+                    }
+
+                    else -> false
+                }
+            }
+        }
+    }
+
+    private fun setUpActionQrButton() {
+        val menu = binding.topAppBar.menu
+        val menuItem = menu.findItem(R.id.new_qr)
+        if (isPdfSelect) {
+            menuItem.setIcon(R.drawable.ic_document)
+            binding.qrCode.visibility = View.VISIBLE
+            binding.pdfView.visibility = View.GONE
+            viewModel.pdfStorageUrl.observe(viewLifecycleOwner) {
+                createQr(it)
+            }
+            isPdfSelect = false
+        } else {
+            menuItem.setIcon(R.drawable.ic_qr)
+            binding.qrCode.visibility = View.GONE
+            binding.pdfView.visibility = View.VISIBLE
+            isPdfSelect = true
+        }
+    }
+
+
+    private fun createQr(url: String) {
+        try {
+            val barcodeEncoder = BarcodeEncoder()
+            val bitmap = barcodeEncoder.encodeBitmap(url, BarcodeFormat.QR_CODE, 750, 750)
+            binding.qrCode.setImageBitmap(bitmap)
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 

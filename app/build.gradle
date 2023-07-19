@@ -16,7 +16,7 @@ android {
         def versionMinor = 0
         def versionPatch = 2
         applicationId "com.psijuego"
-        minSdk 21
+        minSdk 24
         targetSdk 33
         versionCode Integer.valueOf("${versionMajor}${versionMinor}${versionPatch}")
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
@@ -79,6 +79,7 @@ dependencies {
 
     //View PDF
     implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
+
     //QRs
     implementation 'com.journeyapps:zxing-android-embedded:4.3.0'
 

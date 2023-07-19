@@ -17,6 +17,7 @@
     <string name="draw_and_description">Dibujo y descripción realizada</string>
     <string name="more">Ver más</string>
     <string name="share">Compartir</string>
+    <string name="new_qr">Generar QR</string>
 
 
 </resources>
