@@ -43,11 +43,21 @@
         <action
             android:id="@+id/action_conclusionsFragment_to_exportReportFragment"
             app:destination="@id/exportReportFragment" />
+        <action
+            android:id="@+id/action_conclusionsFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_conclusionsFragment_to_indicatorsFragment"
+            app:destination="@id/indicatorsFragment" />
     </fragment>
     <fragment
         android:id="@+id/exportReportFragment"
         android:name="com.psijuego.ui.views.report.export.ExportReportFragment"
         android:label="fragment_export_report"
-        tools:layout="@layout/fragment_export_report" />
+        tools:layout="@layout/fragment_export_report" >
+        <action
+            android:id="@+id/action_exportReportFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 
 </navigation>

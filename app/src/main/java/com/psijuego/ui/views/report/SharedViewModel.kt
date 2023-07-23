@@ -34,11 +34,11 @@ class SharedViewModel @Inject constructor(
     private var _pdfStorageUrl = MutableLiveData<String>()
     val pdfStorageUrl: LiveData<String> = _pdfStorageUrl
 
-    fun setConclusion(conclusion: String){
+    fun setConclusion(conclusion: String) {
         _conclusion.postValue(conclusion)
     }
 
-    fun getConclusion(): String?{
+    fun getConclusion(): String? {
         return conclusion.value
     }
 
@@ -46,14 +46,15 @@ class SharedViewModel @Inject constructor(
         _homeUI.postValue(data)
     }
 
-    fun getHomeUI(): HomeUI?{
+    fun getHomeUI(): HomeUI? {
         return homeUI.value
     }
 
     fun setCategoryUI(data: List<CategoryUI>) {
         _categoryUI.postValue(data)
     }
-    fun getCategoryUI(): List<CategoryUI>?{
+
+    fun getCategoryUI(): List<CategoryUI>? {
         return categoryUI.value
     }
 
@@ -66,8 +67,8 @@ class SharedViewModel @Inject constructor(
         }
     }
 
-    fun uploadDocument(file: File){
-        conclusionUseCase.uploadDocument(file){
+    fun uploadDocument(file: File) {
+        conclusionUseCase.uploadDocument(file) {
             _pdfStorageUrl.postValue(it)
         }
     }
