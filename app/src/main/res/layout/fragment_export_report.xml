@@ -46,6 +46,7 @@
         app:layout_constraintTop_toBottomOf="@+id/header" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnNewReport"
         android:layout_width="@dimen/dp56"
         android:layout_height="@dimen/dp56"
         android:layout_margin="@dimen/dp32"

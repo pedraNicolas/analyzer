@@ -6,7 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.zxing.BarcodeFormat
 import com.journeyapps.barcodescanner.BarcodeEncoder
 import com.psijuego.R
@@ -54,6 +57,7 @@ class ExportReportFragment : Fragment() {
 
     private fun setUpComponent() {
         with(binding) {
+
             if (file != null && file.exists()) {
                 pdfView.fromFile(file).load()
             }
@@ -68,7 +72,27 @@ class ExportReportFragment : Fragment() {
                     else -> false
                 }
             }
+
+            btnNewReport.setOnClickListener { confirmAction() }
+
         }
+    }
+
+    private fun confirmAction() {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(resources.getString(R.string.confirm_new_report))
+            .setNegativeButton(resources.getString(R.string.cancel)) { _, _ ->
+            }
+            .setPositiveButton(resources.getString(R.string.accept)) { _, _ ->
+                onNewReport()
+            }
+            .show()
+    }
+
+    private fun onNewReport() {
+        viewModel.setHomeUI(HomeUI())
+        viewModel.setConclusion("")
+        findNavController().navigate(R.id.action_exportReportFragment_to_homeFragment)
     }
 
     private fun setUpActionQrButton() {
