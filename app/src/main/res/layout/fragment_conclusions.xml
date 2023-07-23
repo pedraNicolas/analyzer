@@ -6,26 +6,35 @@
     android:layout_height="match_parent"
     tools:context="com.psijuego.ui.views.report.conclusions.ConclusionsFragment">
 
-    <com.psijuego.core.components.HeaderLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        custom:back="true"
-        custom:close="false"
-        custom:textHeader="@string/conclusions"/>
+        app:liftOnScroll="true">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimaryContainer"
+            app:navigationIcon="@drawable/ic_back"
+            app:title="@string/conclusions"
+            app:titleCentered="true"
+            app:titleTextAppearance="?attr/textAppearanceTitleSmall" />
+    </com.google.android.material.appbar.AppBarLayout>
 
     <EditText
         android:id="@+id/tvConclusion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp64"
         android:layout_marginHorizontal="@dimen/dp16"
-        android:minWidth="@dimen/dp48"
-        android:layout_weight="1"
+        android:layout_marginTop="@dimen/dp64"
         android:hint="@string/report_conclusions"
+        android:minWidth="@dimen/dp48"
+        app:layout_constraintBottom_toTopOf="@+id/btnQR"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header" />
@@ -36,25 +45,24 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/dp32"
         android:backgroundTint="@color/blue_mental_hearth"
-        android:fontFamily="@font/open_sans_bold"
+        android:fontFamily="@font/roboto_medium"
         android:paddingHorizontal="@dimen/dp64"
         android:text="@string/name_qr_bottom"
         android:textSize="@dimen/dp16"
-        app:layout_constraintBottom_toTopOf="@+id/btnCancel"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <Button
         android:id="@+id/btnCancel"
+        style="@style/Widget.Material3.Button.TextButton"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/dp48"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/dp32"
-        android:layout_weight="1"
-        android:fontFamily="@font/open_sans_bold"
-        android:gravity="center"
+        android:fontFamily="@font/roboto_medium"
         android:paddingHorizontal="@dimen/dp64"
         android:text="@string/cancel"
-        android:textAlignment="center"
         android:textColor="@color/red"
         android:textSize="@dimen/dp16"
         app:layout_constraintBottom_toBottomOf="parent"
