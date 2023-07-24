@@ -22,8 +22,8 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimaryContainer"
             app:menu="@menu/top_app_bar"
-            app:title="@string/app_name"
-            app:titleTextAppearance="?attr/textAppearanceTitleSmall" />
+            app:title="@string/report"
+            app:titleTextAppearance="@style/MyToolbarTitleStyle" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.github.barteksc.pdfviewer.PDFView

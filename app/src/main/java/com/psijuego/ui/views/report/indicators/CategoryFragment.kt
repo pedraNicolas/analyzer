@@ -14,7 +14,7 @@ import com.psijuego.data.model.ui.CategoryUI
 import com.psijuego.databinding.FragmentCategoryBinding
 import com.psijuego.ui.views.report.SharedViewModel
 import com.psijuego.core.components.CirclePagerIndicatorDecoration
-import com.psijuego.core.components.HorizontalSpaceItemDecoration
+import com.psijuego.core.utils.ResourceState
 import com.psijuego.ui.views.report.indicators.adapter.category.CategoryRvAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -41,10 +41,36 @@ class CategoryFragment : Fragment(), CategoryListener {
     }
 
     private fun setUpViewModel() {
-        if(categoriesList.isNullOrEmpty()) viewModel.getCategoriesList()
-        viewModel.categoryUI.observe(viewLifecycleOwner) { list ->
-            fillIndicatorList(list)
+        if (categoriesList.isNullOrEmpty()) {
+            viewModel.getCategoriesList()
+            setUpObservers()
         }
+    }
+
+    private fun setUpObservers() {
+        viewModel.dataState.observe(viewLifecycleOwner) { resourceState ->
+            with(binding) {
+                when (resourceState) {
+                    is ResourceState.Loading -> {
+                        pbLoading.visibility = View.VISIBLE
+                    }
+
+                    is ResourceState.Success -> {
+                        pbLoading.visibility = View.GONE
+                        fillIndicatorList(resourceState.data)
+                    }
+
+                    is ResourceState.Failure -> {
+                        pbLoading.visibility = View.GONE
+                        showError(resourceState.message)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun showError(message: String) {
+        // Mostrar mensaje de error en la vista
     }
 
     private fun fillIndicatorList(list: List<CategoryUI>) {
@@ -63,9 +89,6 @@ class CategoryFragment : Fragment(), CategoryListener {
             categoryRvAdapter = CategoryRvAdapter(categoriesList)
             categoryRvAdapter.setListener(this@CategoryFragment)
             rvCategory.addItemDecoration(CirclePagerIndicatorDecoration(requireContext()))
-
-            //val horizontalSpacing = resources.getDimensionPixelSize(R.dimen.dp16)
-            //rvCategory.addItemDecoration(HorizontalSpaceItemDecoration(horizontalSpacing))
 
             rvCategory.adapter = categoryRvAdapter
         }
@@ -91,7 +114,7 @@ class CategoryFragment : Fragment(), CategoryListener {
 
     override fun onNextClicked() {
         bindToObject()
-        viewModel.categoryUI.removeObservers(viewLifecycleOwner)
+        viewModel.dataState.removeObservers(viewLifecycleOwner)
         setUpNavigation(binding.root, R.id.action_indicatorsFragment_to_conclusionsFragment)
     }
 

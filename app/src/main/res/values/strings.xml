@@ -1,26 +1,27 @@
 <resources>
+    <string name="accept">Aceptar</string>
     <string name="app_name">Psi Juego</string>
     <string name="before_starting">Antes de empezar</string>
-    <string name="patient_name">Nombre del dibujante</string>
-    <string name="professional_name">Nombre del profesional</string>
-    <string name="registration_number">Edad del dibujante</string>
-    <string name="draw_description">Narrativa del dibujante</string>
-    <string name="report_title">Informe de Evaluación Integral de Bienestar</string>
-    <string name="report">Informe</string>
-    <string name="images">Images</string>
-    <string name="invalid_field">Campo obligatorio</string>
-    <string name="name_qr_bottom">Generar Reporte</string>
     <string name="cancel">Cancelar</string>
+    <string name="cancel_supporting_text">Perderá toda la información cargada hasta el momento</string>
     <string name="confirm_cancel">¿Desea cancelar?</string>
     <string name="confirm_new_report">¿Desea empezar un nuevo reporte?</string>
-    <string name="accept">Aceptar</string>
-    <string name="cancel_supporting_text">Perderá toda la información cargada hasta el momento</string>
     <string name="conclusions">Conclusiones</string>
-    <string name="report_conclusions">Conclusiones del reporte</string>
-    <string name="draw_and_description">Dibujo y descripción realizada</string>
+    <string name="document_saved">El documento se ha guardado en la carpeta de descargas</string>
+    <string name="draw_and_description">Dibujo y descripción realizados</string>
+    <string name="draw_description">Narrativa del dibujante</string>
+    <string name="images">Imágenes</string>
+    <string name="invalid_field">Campo obligatorio</string>
     <string name="more">Ver más</string>
-    <string name="share">Compartir</string>
+    <string name="name_qr_bottom">Generar Reporte</string>
     <string name="new_qr">Generar QR</string>
-
-
+    <string name="patient_name">Nombre del dibujante</string>
+    <string name="patient_name_hint">Nombre del dibujante (Requerido)</string>
+    <string name="professional_name">Nombre del profesional</string>
+    <string name="professional_name_hint">Nombre del profesional (Requerido)</string>
+    <string name="registration_number">Edad del dibujante</string>
+    <string name="report">Informe</string>
+    <string name="report_conclusions">Conclusiones del reporte</string>
+    <string name="report_title">Informe del análisis</string>
+    <string name="share">Compartir</string>
 </resources>
