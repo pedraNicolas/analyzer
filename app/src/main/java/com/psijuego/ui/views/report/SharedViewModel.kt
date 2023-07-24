@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.psijuego.core.utils.ResourceState
 import com.psijuego.data.model.ui.CategoryUI
 import com.psijuego.data.model.ui.HomeUI
 import com.psijuego.domain.usecase.CategoryUseCase
@@ -58,11 +59,23 @@ class SharedViewModel @Inject constructor(
         return categoryUI.value
     }
 
+    private val _dataState: MutableLiveData<ResourceState<List<CategoryUI>>> = MutableLiveData()
+    val dataState: LiveData<ResourceState<List<CategoryUI>>> get() = _dataState
+
     fun getCategoriesList() {
+        _dataState.value = ResourceState.Loading
         viewModelScope.launch {
-            val list = categoryUseCase.getCategoriesList()
-            if (list.isNotEmpty()) {
-                _categoryUI.postValue(list)
+            try {
+                val list = categoryUseCase.getCategoriesList()
+                if (list.isNotEmpty()) {
+                    _dataState.value = ResourceState.Success(list)
+                    _categoryUI.postValue(list)
+                } else {
+                    _dataState.value = ResourceState.Failure("No se encontraron categorías.")
+                }
+            } catch (e: Exception) {
+                _dataState.value =
+                    ResourceState.Failure("Error al cargar las categorías: ${e.message}")
             }
         }
     }

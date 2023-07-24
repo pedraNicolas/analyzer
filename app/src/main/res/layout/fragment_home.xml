@@ -8,38 +8,33 @@
     android:background="@color/white"
     tools:context="com.psijuego.ui.views.report.home.HomeFragment">
 
-    <ImageView
-        android:id="@+id/ivLogo"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/dp24"
-        android:layout_margin="@dimen/dp16"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        android:src="@drawable/ic_header"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp8"
-        android:layout_marginTop="@dimen/dp16"
-        android:fontFamily="@font/saint_regus_semi_bold"
-        android:text="@string/app_name"
-        android:textColor="@color/dark_gray"
-        android:textSize="@dimen/dp16"
-        app:layout_constraintBottom_toBottomOf="@id/ivLogo"
-        app:layout_constraintStart_toEndOf="@id/ivLogo" />
-
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="@dimen/dp24"
-        android:layout_height="@dimen/dp24"
-        android:layout_margin="@dimen/dp16"
-        android:background="@android:color/transparent"
-        android:src="@drawable/ic_more"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginVertical="@dimen/dp16"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ivLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp24"
+            android:layout_margin="@dimen/dp16"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_header"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/saint_regus_semi_bold"
+            android:text="@string/app_name"
+            android:textColor="@color/dark_gray"
+            android:textSize="@dimen/sp20" />
+    </LinearLayout>
+
 
 
     <ScrollView
@@ -50,10 +45,8 @@
         android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -67,7 +60,7 @@
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/before_starting"
                 android:textColor="@color/dark_gray"
-                android:textSize="@dimen/dp32"
+                android:textSize="@dimen/sp32"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -78,7 +71,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp32"
-                android:hint="@string/patient_name"
+                android:hint="@string/patient_name_hint"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvTitle">
@@ -89,10 +82,10 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/dark_gray"
                     android:fontFamily="@font/roboto_regular"
-                    android:inputType="textCapSentences"
+                    android:inputType="textCapWords"
                     android:textColor="@color/dark_gray"
                     android:textColorHint="@color/hint_text_color_dark_gray"
-                    android:textSize="@dimen/dp14" />
+                    android:textSize="@dimen/sp14" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -101,7 +94,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp8"
-                android:hint="@string/professional_name"
+                android:hint="@string/professional_name_hint"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvPatientNameLabel">
@@ -112,10 +105,10 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/dark_gray"
                     android:fontFamily="@font/roboto_regular"
-                    android:inputType="textCapSentences"
+                    android:inputType="textCapWords"
                     android:textColor="@color/dark_gray"
                     android:textColorHint="@color/hint_text_color_dark_gray"
-                    android:textSize="@dimen/dp14" />
+                    android:textSize="@dimen/sp14" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -138,38 +131,23 @@
                     android:inputType="number"
                     android:textColor="@color/dark_gray"
                     android:textColorHint="@color/hint_text_color_dark_gray"
-                    android:textSize="@dimen/dp14" />
+                    android:textSize="@dimen/sp14" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <LinearLayout
-                android:id="@+id/llUpload"
+
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                android:id="@+id/btnUpload"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp32"
-                android:gravity="center"
-                android:orientation="vertical"
+                android:text="Adjuntar dibujo"
+                android:fontFamily="@font/roboto_medium"
+                android:textColor="@color/md_theme_light_primary"
+                app:icon="@drawable/ic_upload_file"
+                app:iconTint="@color/md_theme_light_primary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvRegistrationNumberLabel">
-
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/btnUpload"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_upload_file"
-                    app:backgroundTint="?attr/colorSurface" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp8"
-                    android:fontFamily="@font/roboto_medium"
-                    android:paddingTop="@dimen/dp8"
-                    android:text="Adjuntar dibujo"
-                    android:textAlignment="center"
-                    android:textColor="@color/dark_gray"
-                    android:textSize="@dimen/dp14" />
-            </LinearLayout>
+                app:layout_constraintTop_toBottomOf="@id/tvRegistrationNumberLabel" />
 
             <ImageView
                 android:id="@+id/ivImage"
@@ -201,7 +179,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/btnNext"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/llUpload">
+                app:layout_constraintTop_toBottomOf="@id/btnUpload">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tvDescription"
@@ -212,19 +190,18 @@
                     android:inputType="textCapSentences|textMultiLine"
                     android:textColor="@color/dark_gray"
                     android:textColorHint="@color/hint_text_color_dark_gray"
-                    android:textSize="@dimen/dp14" />
+                    android:textSize="@dimen/sp14" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/btnNext"
-                style="@style/Widget.Material3.Button.ElevatedButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/dp88"
                 android:layout_marginBottom="@dimen/dp32"
                 android:fontFamily="@font/roboto_medium"
                 android:text="Siguiente"
-                android:textSize="@dimen/dp16"
+                android:textSize="@dimen/sp16"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />

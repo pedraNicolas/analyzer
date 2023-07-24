@@ -60,12 +60,6 @@ class HomeFragment : Fragment() {
                 attachGalleryDraw()
 
             }
-            btnUpload.imageTintList = ColorStateList.valueOf(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.primary_material3_40
-                )
-            )
             ivDelete.setOnClickListener(::onDeleteImage)
         }
     }
@@ -96,12 +90,12 @@ class HomeFragment : Fragment() {
         if (deleted) {
             mUri = null
             with(binding) {
-                llUpload.visibility = View.VISIBLE
+                btnUpload.visibility = View.VISIBLE
                 ivImage.visibility = View.GONE
                 ivDelete.visibility = View.GONE
                 tvDescriptionLabel.layoutParams =
                     (tvDescriptionLabel.layoutParams as ConstraintLayout.LayoutParams).apply {
-                        topToBottom = R.id.llUpload
+                        topToBottom = R.id.btnUpload
                     }
             }
         }
@@ -138,7 +132,7 @@ class HomeFragment : Fragment() {
         if (mUri != null) {
             val uri = mUri
             with(binding) {
-                llUpload.visibility = View.GONE
+                btnUpload.visibility = View.GONE
                 ivImage.visibility = View.VISIBLE
                 ivDelete.visibility = View.VISIBLE
                 tvDescriptionLabel.layoutParams =

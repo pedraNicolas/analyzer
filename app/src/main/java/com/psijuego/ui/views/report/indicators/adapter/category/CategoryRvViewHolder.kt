@@ -23,7 +23,7 @@ class CategoryRvViewHolder(
         listener: CategoryListener?
     ) {
         with(binding) {
-            headerLayout.setTitle(item.name)
+            tvTitle.text =item.name
             item.parameter.let {
                 for (parameter in it) {
                     if (parameter.name == Constants.DESCRIPTION) {
@@ -38,7 +38,7 @@ class CategoryRvViewHolder(
                 }
             }
 
-            headerLayout.showBack(itemPosition == 0)
+            //headerLayout.showBack(itemPosition == 0)
             btnNext.visibility = if (size - 1 == itemPosition) View.VISIBLE else View.GONE
             btnNext.setOnClickListener {
                 listener?.onNextClicked()
