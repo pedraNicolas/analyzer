@@ -3,4 +3,5 @@
     <files-path name="internal" path="." />
     <external-path name="sdcard" path="." />
     <external-path name="sdcard_images" path="analyzer/images" />
+    <external-path name="external_files" path="." />
 </paths>
