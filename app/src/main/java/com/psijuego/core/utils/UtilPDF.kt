@@ -3,7 +3,7 @@ package com.psijuego.core.utils
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
-import android.os.Environment
+import androidx.core.content.FileProvider
 import com.itextpdf.io.image.ImageDataFactory
 import com.itextpdf.kernel.colors.DeviceRgb
 import com.itextpdf.kernel.geom.PageSize
@@ -33,27 +33,26 @@ import java.util.Date
 import java.util.Locale
 import kotlin.Exception
 
-class UtilPDF() {
+class UtilPDF {
 
     private val context = CoreModule.getContext()
+    private val utilFile = UtilFile()
+
+    companion object {
+        fun getInstance(): UtilPDF {
+            return UtilPDF()
+        }
+    }
 
     @Throws(FileNotFoundException::class)
-    fun createPdf(homeUI: HomeUI, listCategoryUI: List<CategoryUI>, conclusion: String): File {
-        val pdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-            .toString()
-        val patientName = homeUI.namePatient.lowercase(Locale.getDefault()).replace(" ", "_")
-        val professionalName =
-            homeUI.nameProfessional.lowercase(Locale.getDefault()).replace(" ", "_")
+    fun createPdf(
+        homeUI: HomeUI,
+        listCategoryUI: List<CategoryUI>,
+        conclusion: String
+    ): Pair<File, Uri?> {
 
-        val file = File(pdfPath, "${getDate()}${patientName}_${professionalName}.pdf")
 
-        if (!file.exists()) {
-            try {
-                file.createNewFile()
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
+        val file = setFile(homeUI, Constants.DOCUMENT)
 
         val outputStream = FileOutputStream(file)
         val writer = PdfWriter(outputStream)
@@ -83,8 +82,64 @@ class UtilPDF() {
         document.close()
         outputStream.close()
 
+        val uri = FileProvider.getUriForFile(context!!, "com.psijuego.provider", file)
+        return Pair(file, uri)
+    }
+
+    private fun setFile(homeUI: HomeUI, typeName: String): File {
+
+        val localTargetFilePath = "${utilFile.getExternalDirectory(Constants.DOCUMENT_DIRECTORY)}"
+        val patientName = homeUI.namePatient.lowercase(Locale.getDefault()).replace(" ", "_")
+        val professionalName =
+            homeUI.nameProfessional.lowercase(Locale.getDefault()).replace(" ", "_")
+        val fileName =
+            "${typeName}_${getDate()}_${patientName}_${professionalName}${Constants.PDF_EXTENSION}"
+
+        val file = File(localTargetFilePath, fileName)
+
+        if (!file.exists()) {
+            try {
+                file.createNewFile()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
         return file
     }
+
+    @Throws(FileNotFoundException::class)
+    fun createQRPdf(
+        homeUI: HomeUI,
+        bitmap: Bitmap
+
+    ): Pair<File, Uri?> {
+
+        val file = setFile(homeUI, Constants.QR)
+
+        val outputStream = FileOutputStream(file)
+        val writer = PdfWriter(outputStream)
+        val pdfDocument = PdfDocument(writer)
+        pdfDocument.defaultPageSize = PageSize.A4
+        val document = Document(pdfDocument)
+
+        document.add(addHeaderTable(homeUI))
+        document.add(Paragraph("\n"))
+        document.add(
+            Paragraph(context?.getString(R.string.report)).setTextAlignment(TextAlignment.CENTER)
+                .setFontSize(16f).setBold().setBorder(Border.NO_BORDER)
+        )
+
+        document.add(Paragraph("\n"))
+        document.add(addQR(bitmap))
+
+
+        document.close()
+        outputStream.close()
+
+        val uri = FileProvider.getUriForFile(context!!, "com.psijuego.provider", file)
+        return Pair(file, uri)
+    }
+
 
     private fun addHeaderTable(homeUI: HomeUI): Table {
         val columnWidth = floatArrayOf(510f, 165f, 822f)
@@ -190,6 +245,29 @@ class UtilPDF() {
         }
         return null
     }
+
+    private fun addQR(bitmap: Bitmap): Table {
+        val columnWidth = floatArrayOf(1497f)
+        val table = Table(columnWidth)
+
+        try {
+            val byteArrayOutputStream = ByteArrayOutputStream()
+            bitmap?.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
+            val imageData = ImageDataFactory.create(byteArrayOutputStream.toByteArray())
+            val image = Image(imageData)
+            image.scaleToFit(300f, Float.MAX_VALUE)
+            table.addCell(
+                Cell().add(Paragraph().add(image)).setTextAlignment(TextAlignment.CENTER)
+                    .setBorder(Border.NO_BORDER)
+            )
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        return table
+
+    }
+
 
     private fun addImageAndDescriptionTable(homeUI: HomeUI): Table {
 

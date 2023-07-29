@@ -7,7 +7,8 @@
     <string name="confirm_cancel">¿Desea cancelar?</string>
     <string name="confirm_new_report">¿Desea empezar un nuevo reporte?</string>
     <string name="conclusions">Conclusiones</string>
-    <string name="document_saved">El documento se ha guardado en la carpeta de descargas</string>
+    <string name="report_saved">El reporte se ha guardado en la carpeta de descargas</string>
+    <string name="qr_saved">El QR se ha guardado en la carpeta de descargas</string>
     <string name="draw_and_description">Dibujo y descripción realizados</string>
     <string name="draw_description">Narrativa del dibujante</string>
     <string name="images">Imágenes</string>
@@ -24,4 +25,7 @@
     <string name="report_conclusions">Conclusiones del reporte</string>
     <string name="report_title">Informe del análisis</string>
     <string name="share">Compartir</string>
+    <string name="whatsapp_name">WhatsApp</string>
+    <string name="email">Email</string>
+    <string name="save">Guardar</string>
 </resources>
