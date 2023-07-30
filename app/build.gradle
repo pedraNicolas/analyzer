@@ -5,6 +5,7 @@ plugins {
     id 'kotlin-android'
     id 'dagger.hilt.android.plugin'
     id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
 }
 
 android {
@@ -73,6 +74,9 @@ dependencies {
 
     //Firebase Firestore
     implementation("com.google.firebase:firebase-firestore-ktx")
+
+    //Firebase Chrashlytics
+    implementation 'com.google.firebase:firebase-crashlytics-ktx'
 
     //PDF
     implementation 'com.itextpdf:itext7-core:8.0.0'

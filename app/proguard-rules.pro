@@ -21,3 +21,14 @@
 #-renamesourcefileattribute SourceFile
 
 -keep class com.shockwave.**
+
+####### START iTextPdf
+-keep class javax.xml.crypto.dsig.** { *; }
+-dontwarn javax.xml.crypto.dsig.**
+-keep class javax.xml.crypto.** { *; }
+-dontwarn javax.xml.crypto.**
+-keep class org.spongycastle.** { *; }
+-keep class com.itextpdf.** { *; }
+-dontwarn org.spongycastle.**
+-dontwarn com.itextpdf.**
+####### END iTextPdf

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.psijuego.R
@@ -36,8 +37,13 @@ class CategoryFragment : Fragment(), CategoryListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpComponents()
         setUpViewModel()
         setUpRecyclerView()
+    }
+
+    private fun setUpComponents() {
+        binding.topAppBar.setNavigationOnClickListener { onBack() }
     }
 
     private fun setUpViewModel() {
@@ -120,5 +126,10 @@ class CategoryFragment : Fragment(), CategoryListener {
 
     private fun bindToObject() {
         viewModel.setCategoryUI(categoriesList)
+    }
+
+    private fun onBack() {
+        bindToObject()
+        findNavController().popBackStack()
     }
 }
