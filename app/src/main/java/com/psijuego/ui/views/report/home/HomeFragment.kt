@@ -2,25 +2,23 @@ package com.psijuego.ui.views.report.home
 
 import android.app.Activity
 import android.content.Intent
-import android.content.res.ColorStateList
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
+import com.bumptech.glide.Glide
 import com.psijuego.R
 import com.psijuego.core.utils.UtilFile
 import com.psijuego.core.utils.UtilUploadFiles
 import com.psijuego.data.model.ui.HomeUI
 import com.psijuego.databinding.FragmentHomeBinding
 import com.psijuego.ui.views.report.SharedViewModel
-import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

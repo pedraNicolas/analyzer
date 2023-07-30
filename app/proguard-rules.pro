@@ -22,6 +22,9 @@
 
 -keep class com.shockwave.**
 
+-dontwarn org.jetbrains.kotlin.**
+
+
 ####### START iTextPdf
 -keep class javax.xml.crypto.dsig.** { *; }
 -dontwarn javax.xml.crypto.dsig.**

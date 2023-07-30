@@ -33,7 +33,7 @@ class UtilFile {
         return "$firstNamePart-${format.format(Date())}$lastNamePart"
     }
 
-    fun deleteFile(filePath: String?): Boolean {
+    fun deleteFile(filePath: String): Boolean {
         return try {
             val file = File(filePath)
             var deleted = false
@@ -121,10 +121,8 @@ class UtilFile {
         val downloadsDir =
             Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
                 .toString()
-        if (downloadsDir != null) {
-            val outputFile = File(downloadsDir, file.name)
-            copyFile(inputStream, FileOutputStream(outputFile))
-        }
+        val outputFile = File(downloadsDir, file.name)
+        copyFile(inputStream, FileOutputStream(outputFile))
     }
 
     @Throws(IOException::class)
