@@ -14,13 +14,14 @@ class GenericDiffUtil<T>(
     override fun getNewListSize(): Int = newList.size
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        if (oldList.all { it is ParameterUI } && newList.all { it is ParameterUI }) {
-            return (oldList as List<ParameterUI>)[oldItemPosition] == (newList as List<ParameterUI>)[newItemPosition]
+        val oldItem = oldList[oldItemPosition]
+        val newItem = newList[newItemPosition]
+
+        return when {
+            oldItem is ParameterUI && newItem is ParameterUI -> oldItem == newItem
+            oldItem is CategoryUI && newItem is CategoryUI -> oldItem == newItem
+            else -> true
         }
-        if (oldList.all { it is CategoryUI } && newList.all { it is CategoryUI }) {
-            return (oldList as List<CategoryUI>)[oldItemPosition] == (newList as List<CategoryUI>)[newItemPosition]
-        }
-        return true
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {

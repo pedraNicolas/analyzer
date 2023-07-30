@@ -82,7 +82,6 @@ class CirclePagerIndicatorDecoration(context: Context) : ItemDecoration() {
         val activeChild: View? = layoutManager.findViewByPosition(activePosition)
         val left: Int = activeChild?.left ?: 0
         val width: Int = activeChild?.width ?: 0
-        val right: Int = activeChild?.right ?: 0
 
         // On swipe, the active item will be positioned from [-width, 0]
         // Interpolate offset for smooth animation
