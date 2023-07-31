@@ -9,12 +9,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.zxing.BarcodeFormat
 import com.journeyapps.barcodescanner.BarcodeEncoder
 import com.psijuego.R
+import com.psijuego.core.utils.ResourceState
 import com.psijuego.core.utils.UtilFile
 import com.psijuego.core.utils.UtilPDF
 import com.psijuego.core.utils.UtilShare
@@ -52,10 +54,24 @@ class ExportReportFragment : Fragment() {
     }
 
     private fun setUpViewModel() {
-        listCategoryUI = viewModel.getCategoryUI() ?: emptyList()
-        homeUI = viewModel.getHomeUI() ?: HomeUI()
-        conclusion = viewModel.getConclusion() ?: ""
+        listCategoryUI = viewModel.categoryUI.value ?: emptyList()
+        homeUI = viewModel.homeUI.value ?: HomeUI()
+        conclusion = viewModel.conclusion.value ?: ""
         createPdfDocument()
+        viewModel.uploadState.observe(viewLifecycleOwner) {
+            when (it) {
+                is ResourceState.Success -> {
+                    binding.topAppBar.menu.findItem(R.id.new_qr).isEnabled = true
+                    createQr(it.data)
+                }
+
+                is ResourceState.Failure -> {
+                    Toast.makeText(requireContext(), R.string.qr_failed, Toast.LENGTH_SHORT).show()
+                }
+
+                else -> {}
+            }
+        }
     }
 
     private fun createPdfDocument() {
@@ -183,11 +199,6 @@ class ExportReportFragment : Fragment() {
             menuItem.setIcon(R.drawable.ic_document)
             binding.qrCode.visibility = View.VISIBLE
             binding.pdfView.visibility = View.GONE
-            if (bitmap == null) {
-                viewModel.pdfStorageUrl.observe(viewLifecycleOwner) {
-                    createQr(it)
-                }
-            }
             isPdfSelect = false
         } else {
             menuItem.setIcon(R.drawable.ic_qr)

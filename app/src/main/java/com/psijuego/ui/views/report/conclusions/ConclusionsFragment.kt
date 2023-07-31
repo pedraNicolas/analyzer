@@ -22,8 +22,8 @@ class ConclusionsFragment : Fragment() {
 
     private lateinit var binding: FragmentConclusionsBinding
     private val viewModel: SharedViewModel by activityViewModels<SharedViewModel>()
-    private lateinit var listCategoryUI: List<CategoryUI>
-    private lateinit var homeUI: HomeUI
+    private var listCategoryUI: List<CategoryUI> = emptyList()
+    private var homeUI: HomeUI = HomeUI()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,8 +39,8 @@ class ConclusionsFragment : Fragment() {
     private fun setUpComponents() {
         bindToForm()
         with(binding) {
-            btnQR.setOnClickListener { onNavigateToPdf() }
-            btnCancel.setOnClickListener { confirmAction() }
+            btnQR.setOnClickListener { confirmContinueAction() }
+            btnCancel.setOnClickListener { confirmCancelAction() }
             topAppBar.setNavigationOnClickListener { onBack() }
         }
     }
@@ -76,7 +76,7 @@ class ConclusionsFragment : Fragment() {
         findNavController().popBackStack()
     }
 
-    private fun confirmAction() {
+    private fun confirmCancelAction() {
         MaterialAlertDialogBuilder(requireContext())
             .setTitle(resources.getString(R.string.confirm_cancel))
             .setMessage(resources.getString(R.string.cancel_supporting_text))
@@ -88,9 +88,25 @@ class ConclusionsFragment : Fragment() {
             .show()
     }
 
+    private fun confirmContinueAction() {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(resources.getString(R.string.confirm_continue))
+            .setMessage(resources.getString(R.string.continue_supporting_text))
+            .setNegativeButton(resources.getString(R.string.cancel)) { _, _ ->
+            }
+            .setPositiveButton(resources.getString(R.string.accept)) { _, _ ->
+                onNavigateToPdf()
+            }
+            .show()
+    }
+
     private fun initViewModel() {
-        listCategoryUI = viewModel.getCategoryUI() ?: emptyList()
-        homeUI = viewModel.getHomeUI() ?: HomeUI()
+        viewModel.categoryUI.observe(viewLifecycleOwner) {
+            listCategoryUI = it
+        }
+        viewModel.homeUI.observe(viewLifecycleOwner) {
+            homeUI = it
+        }
     }
 
 }
