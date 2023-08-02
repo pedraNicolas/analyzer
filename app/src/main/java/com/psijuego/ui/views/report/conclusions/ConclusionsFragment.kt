@@ -2,10 +2,12 @@ package com.psijuego.ui.views.report.conclusions
 
 import android.os.Bundle
 import android.text.Editable
-import androidx.fragment.app.Fragment
+import android.text.SpannableString
+import android.text.style.UnderlineSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
@@ -16,6 +18,7 @@ import com.psijuego.data.model.ui.HomeUI
 import com.psijuego.databinding.FragmentConclusionsBinding
 import com.psijuego.ui.views.report.SharedViewModel
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class ConclusionsFragment : Fragment() {
@@ -40,6 +43,11 @@ class ConclusionsFragment : Fragment() {
         bindToForm()
         with(binding) {
             btnQR.setOnClickListener { onNavigateToPdf() }
+//            btnCancel.paintFlags = Paint.UNDERLINE_TEXT_FLAG
+            val cancel = resources.getString(R.string.cancel)
+            val content = SpannableString(cancel)
+            content.setSpan(UnderlineSpan(), 0, content.length, 0)
+            btnCancel.text = content
             btnCancel.setOnClickListener { confirmAction() }
             topAppBar.setNavigationOnClickListener { onBack() }
         }

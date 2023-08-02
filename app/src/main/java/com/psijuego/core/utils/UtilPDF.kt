@@ -63,22 +63,26 @@ class UtilPDF {
 
         document.add(addHeaderTable(homeUI))
         document.add(Paragraph("\n"))
-        document.add(addImageAndDescriptionTable(homeUI))
+        if (homeUI.uri != null && !homeUI.drawDescription.isNullOrBlank()) document.add(
+            addImageAndDescriptionTable(homeUI)
+        )
         document.add(Paragraph("\n"))
         document.add(
             Paragraph(context?.getString(R.string.report)).setTextAlignment(TextAlignment.CENTER)
                 .setFontSize(16f).setBold().setBorder(Border.NO_BORDER)
         )
         document.add(addCategoriesAndParametersTable(listCategoryUI))
-        document.add(
-            Paragraph(context?.getString(R.string.conclusions)).setTextAlignment(
-                TextAlignment.CENTER
-            ).setFontSize(16f).setBold().setBorder(Border.NO_BORDER)
-        )
-        document.add(
-            Paragraph(conclusion).setTextAlignment(TextAlignment.CENTER)
-                .setBorder(Border.NO_BORDER)
-        )
+        if (!conclusion.isNullOrBlank()) {
+            document.add(
+                Paragraph(context?.getString(R.string.conclusions)).setTextAlignment(
+                    TextAlignment.CENTER
+                ).setFontSize(16f).setBold().setBorder(Border.NO_BORDER)
+            )
+            document.add(
+                Paragraph(conclusion).setTextAlignment(TextAlignment.CENTER)
+                    .setBorder(Border.NO_BORDER)
+            )
+        }
         document.close()
         outputStream.close()
 
@@ -207,19 +211,22 @@ class UtilPDF {
         table.addCell(Cell().add(Paragraph("")).setBorder(Border.NO_BORDER))
 
         //Row 06
-        table.addCell(
-            Cell(
-                1,
-                2
-            ).add(context?.let {
-                setParagraphColorFormat(
-                    it.getString(R.string.registration_number),
-                    homeUI.numberRegistration.toString()
-                )
-            }).setBorder(Border.NO_BORDER)
-        )
-        //table.addCell(Cell().add(Paragraph("")))
-        table.addCell(Cell().add(Paragraph("")).setBorder(Border.NO_BORDER))
+        if (!homeUI.agePatient.isNullOrBlank()) {
+            table.addCell(
+                Cell(
+                    1,
+                    2
+                ).add(context?.let {
+                    setParagraphColorFormat(
+                        it.getString(R.string.patient_age),
+                        homeUI.agePatient.toString()
+                    )
+                }).setBorder(Border.NO_BORDER)
+            )
+            //table.addCell(Cell().add(Paragraph("")))
+            table.addCell(Cell().add(Paragraph("")).setBorder(Border.NO_BORDER))
+        }
+
 
         return table
     }
@@ -306,7 +313,7 @@ class UtilPDF {
         table.addCell(Cell().add(Paragraph("\n")).setBorder(Border.NO_BORDER))
 
         //Row 5
-        if (!homeUI.drawDescription.isNullOrEmpty()) {
+        if (!homeUI.drawDescription.isNullOrBlank()) {
             table.addCell(
                 Cell().add(Paragraph("\"${homeUI.drawDescription}\""))
                     .setTextAlignment(TextAlignment.CENTER).setItalic().setBorder(Border.NO_BORDER)
