@@ -27,7 +27,7 @@ class ParameterRvViewHolder(
 
                 if(item.description == "") btnMore.visibility = View.GONE
 
-                btnMore.setOnClickListener {
+                llMore.setOnClickListener {
                     onMorePressed(item)
                 }
 

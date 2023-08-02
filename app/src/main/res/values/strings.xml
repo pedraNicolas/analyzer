@@ -2,6 +2,8 @@
     <string name="accept">Aceptar</string>
     <string name="app_name">Psi Juego</string>
     <string name="before_starting">Antes de empezar</string>
+    <string name="before_end">Ya casi has terminado!</string>
+    <string name="supporting_conclusions_text">Antes de generar el reporte, puedes dejar algunas conclusiones</string>
     <string name="cancel">Cancelar</string>
     <string name="cancel_supporting_text">Perderá toda la información cargada hasta el momento</string>
     <string name="continue_supporting_text">No podrá volver para realizar cambios en el reporte.\nRevise antes de continuar.</string>
@@ -22,7 +24,7 @@
     <string name="patient_name_hint">Nombre del dibujante (Requerido)</string>
     <string name="professional_name">Nombre del profesional</string>
     <string name="professional_name_hint">Nombre del profesional (Requerido)</string>
-    <string name="registration_number">Edad del dibujante</string>
+    <string name="patient_age">Edad del dibujante</string>
     <string name="report">Informe</string>
     <string name="report_conclusions">Conclusiones del reporte</string>
     <string name="report_title">Informe del análisis</string>
