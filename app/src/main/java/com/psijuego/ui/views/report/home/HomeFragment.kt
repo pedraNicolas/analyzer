@@ -154,7 +154,7 @@ class HomeFragment : Fragment() {
         with(binding) {
             tvProfessionalName.text?.toString()?.let { homeUI.nameProfessional = it }
             tvPatientName.text?.toString()?.let { homeUI.namePatient = it }
-            tvRegistrationNumber.text?.toString()?.let { homeUI.numberRegistration = it }
+            tvRegistrationNumber.text?.toString()?.let { homeUI.agePatient = it }
             tvDescription.text?.toString()?.let { homeUI.drawDescription = it }
             homeUI.uri = mUri
         }
@@ -166,7 +166,7 @@ class HomeFragment : Fragment() {
             with(binding) {
                 homeUI.nameProfessional.let { tvProfessionalName.setText(it) }
                 homeUI.namePatient.let { tvPatientName.setText(it) }
-                homeUI.numberRegistration.let { tvRegistrationNumber.setText(it) }
+                homeUI.agePatient.let { tvRegistrationNumber.setText(it) }
                 homeUI.drawDescription.let { tvDescription.setText(it) }
                 showImage(homeUI.uri)
             }

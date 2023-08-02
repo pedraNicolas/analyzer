@@ -117,7 +117,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp8"
-                android:hint="@string/registration_number"
+                android:hint="@string/patient_age"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvProfessionalNameLabel">
@@ -197,7 +197,7 @@
                 android:id="@+id/btnNext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/dp88"
+                android:layout_marginHorizontal="@dimen/dp32"
                 android:layout_marginBottom="@dimen/dp32"
                 android:fontFamily="@font/roboto_medium"
                 android:text="Siguiente"

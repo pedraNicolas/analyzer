@@ -10,28 +10,13 @@
 
     <ImageView
         android:id="@+id/ivMentalHearth"
-        android:layout_width="@dimen/dp272"
-        android:layout_height="@dimen/dp272"
-        android:layout_marginTop="@dimen/dp136"
+        android:layout_width="@dimen/dp208"
+        android:layout_height="@dimen/dp208"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo_psi_juego" />
-
-    <Button
-        android:id="@+id/btnStart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp136"
-        android:backgroundTint="@color/blue_mental_hearth"
-        android:fontFamily="@font/open_sans_semibold"
-        android:text="  Empecemos   "
-        android:textColor="@color/white"
-        android:textSize="@dimen/dp16"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="@dimen/dp64"/>
+        app:srcCompat="@drawable/logo_psi_juego" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

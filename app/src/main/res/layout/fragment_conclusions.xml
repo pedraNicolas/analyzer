@@ -26,6 +26,34 @@
             app:titleTextAppearance="@style/MyToolbarTitleStyle" />
     </com.google.android.material.appbar.AppBarLayout>
 
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp40"
+        android:layout_marginHorizontal="@dimen/dp16"
+        android:fontFamily="@font/roboto_regular"
+        android:text="@string/before_end"
+        android:textColor="@color/dark_gray"
+        android:textSize="@dimen/sp24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header" />
+
+    <TextView
+        android:id="@+id/tvSubtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp16"
+        android:layout_marginTop="@dimen/dp8"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/supporting_conclusions_text"
+        android:textColor="@color/dark_gray"
+        android:textSize="@dimen/sp16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
     <ImageView
         android:id="@+id/ivLogo"
         android:layout_width="wrap_content"
@@ -48,36 +76,36 @@
         app:layout_constraintBottom_toTopOf="@+id/btnQR"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header" />
+        app:layout_constraintTop_toBottomOf="@+id/tvSubtitle"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/btnQR"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/dp88"
-        android:layout_marginBottom="@dimen/dp32"
+        android:layout_marginHorizontal="@dimen/dp32"
+        android:layout_marginBottom="@dimen/dp16"
         android:fontFamily="@font/roboto_regular"
         android:text="@string/name_qr_bottom"
         android:textSize="@dimen/sp16"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btnCancel"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnCancel"
         style="@style/Widget.Material3.Button.TextButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp16"
-        android:fontFamily="@font/roboto_medium"
-        android:paddingHorizontal="@dimen/dp64"
+        android:layout_marginHorizontal="@dimen/dp32"
+        android:layout_marginBottom="@dimen/dp32"
+        android:fontFamily="@font/roboto_regular"
         android:text="@string/cancel"
-        android:textColor="@color/red"
+        android:textColor="@color/md_theme_light_primary"
         android:textSize="@dimen/sp16"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnQR" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

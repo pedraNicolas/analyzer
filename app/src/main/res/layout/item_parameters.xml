@@ -12,6 +12,7 @@
         android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/llMore"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
@@ -22,6 +23,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp16"
+                android:layout_marginEnd="@dimen/dp16"
                 android:fontFamily="@font/roboto_regular"
                 android:text="List item"
                 android:textColor="?attr/colorOnSurface"
@@ -35,21 +37,21 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp16"
+                android:layout_marginEnd="@dimen/dp16"
                 android:fontFamily="@font/roboto_regular"
                 android:inputType="textMultiLine"
                 android:text="Supporting line text lorem ipsum dolor sit amet, consectetur."
                 android:textColor="?attr/colorOnSurfaceVariant"
                 android:textSize="@dimen/sp14"
                 android:visibility="gone"
-
                 app:layout_constraintEnd_toStartOf="@+id/btnMore"
                 app:layout_constraintStart_toEndOf="@id/btnState"
                 app:layout_constraintTop_toBottomOf="@+id/indicatorName" />
 
             <CheckBox
                 android:id="@+id/btnState"
-                android:layout_width="@dimen/dp24"
-                android:layout_height="@dimen/dp24"
+                android:layout_width="@dimen/dp32"
+                android:layout_height="@dimen/dp32"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -57,6 +59,7 @@
                 android:id="@+id/btnMore"
                 android:layout_width="@dimen/dp24"
                 android:layout_height="@dimen/dp24"
+                android:clickable="false"
                 android:background="@android:color/transparent"
                 android:src="@drawable/arrow_right_24px"
                 app:layout_constraintBottom_toBottomOf="@id/indicatorName"
