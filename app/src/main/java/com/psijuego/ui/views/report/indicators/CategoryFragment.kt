@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.psijuego.R
+import com.psijuego.core.Constants
 import com.psijuego.data.model.ui.CategoryUI
 import com.psijuego.databinding.FragmentCategoryBinding
 import com.psijuego.ui.views.report.SharedViewModel
@@ -43,7 +44,14 @@ class CategoryFragment : Fragment(), CategoryListener {
     }
 
     private fun setUpComponents() {
-        binding.topAppBar.setNavigationOnClickListener { onBack() }
+        with(binding) {
+            topAppBar.setNavigationOnClickListener { onBack() }
+            noConnection.retryButton?.setOnClickListener {
+                noConnection.visibility = View.GONE
+                rvCategory.visibility = View.VISIBLE
+                viewModel.getCategoriesList()
+            }
+        }
     }
 
     private fun setUpViewModel() {
@@ -68,15 +76,14 @@ class CategoryFragment : Fragment(), CategoryListener {
 
                     is ResourceState.Failure -> {
                         pbLoading.visibility = View.GONE
-                        showError(resourceState.message)
+                        if (resourceState.message.contains(Constants.NOT_CONNECTION)) {
+                            noConnection.visibility = View.VISIBLE
+                            rvCategory.visibility = View.GONE
+                        }
                     }
                 }
             }
         }
-    }
-
-    private fun showError(message: String) {
-        // Mostrar mensaje de error en la vista
     }
 
     private fun fillIndicatorList(list: List<CategoryUI>) {

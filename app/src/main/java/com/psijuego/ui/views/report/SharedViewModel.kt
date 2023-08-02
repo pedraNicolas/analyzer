@@ -1,10 +1,15 @@
 package com.psijuego.ui.views.report
 
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.psijuego.R
+import com.psijuego.core.Constants
+import com.psijuego.core.utils.CoreModule
 import com.psijuego.core.utils.ResourceState
+import com.psijuego.core.utils.UtilConnection
 import com.psijuego.data.model.ui.CategoryUI
 import com.psijuego.data.model.ui.HomeUI
 import com.psijuego.domain.usecase.CategoryUseCase
@@ -19,6 +24,11 @@ class SharedViewModel @Inject constructor(
     private val categoryUseCase: CategoryUseCase,
     private val conclusionUseCase: ConclusionUseCase
 ) : ViewModel() {
+
+    private val utilConnection = UtilConnection.getInstance()
+    private val context = CoreModule.getContext()!!
+
+    //LiveData
 
     private val _homeUI = MutableLiveData<HomeUI>()
     val homeUI: LiveData<HomeUI> = _homeUI
@@ -35,54 +45,59 @@ class SharedViewModel @Inject constructor(
     private var _pdfStorageUrl = MutableLiveData<String>()
     val pdfStorageUrl: LiveData<String> = _pdfStorageUrl
 
+    private val _dataState: MutableLiveData<ResourceState<List<CategoryUI>>> = MutableLiveData()
+    val dataState: LiveData<ResourceState<List<CategoryUI>>> = _dataState
+
+    private val _uploadState: MutableLiveData<ResourceState<String>> = MutableLiveData()
+    val uploadState: LiveData<ResourceState<String>> = _uploadState
+
     fun setConclusion(conclusion: String) {
         _conclusion.postValue(conclusion)
-    }
-
-    fun getConclusion(): String? {
-        return conclusion.value
     }
 
     fun setHomeUI(data: HomeUI) {
         _homeUI.postValue(data)
     }
 
-    fun getHomeUI(): HomeUI? {
-        return homeUI.value
-    }
-
     fun setCategoryUI(data: List<CategoryUI>) {
         _categoryUI.postValue(data)
     }
-
-    fun getCategoryUI(): List<CategoryUI>? {
-        return categoryUI.value
-    }
-
-    private val _dataState: MutableLiveData<ResourceState<List<CategoryUI>>> = MutableLiveData()
-    val dataState: LiveData<ResourceState<List<CategoryUI>>> get() = _dataState
 
     fun getCategoriesList() {
         _dataState.value = ResourceState.Loading
         viewModelScope.launch {
             try {
-                val list = categoryUseCase.getCategoriesList()
-                if (list.isNotEmpty()) {
-                    _dataState.value = ResourceState.Success(list)
-                    _categoryUI.postValue(list)
+                if (utilConnection.checkInternetConnection()) {
+                    val list = categoryUseCase.getCategoriesList()
+                    if (list.isNotEmpty()) {
+                        _dataState.value = ResourceState.Success(list)
+                        _categoryUI.postValue(list)
+                    } else {
+                        _dataState.value =
+                            ResourceState.Failure(Constants.CATEGORIES_NOT_FOUND)
+                    }
                 } else {
-                    _dataState.value = ResourceState.Failure("No se encontraron categorías.")
+                    _dataState.value =
+                        ResourceState.Failure(Constants.NOT_CONNECTION)
                 }
+
             } catch (e: Exception) {
                 _dataState.value =
-                    ResourceState.Failure("Error al cargar las categorías: ${e.message}")
+                    ResourceState.Failure(Constants.CATEGORIES_FAILED)
+                e.printStackTrace()
             }
         }
     }
 
     fun uploadDocument(file: File) {
         conclusionUseCase.uploadDocument(file) {
-            _pdfStorageUrl.postValue(it)
+            if (it.isNotBlank()) {
+                _uploadState.value = ResourceState.Success(it)
+                _pdfStorageUrl.postValue(it)
+            } else {
+                _uploadState.value =
+                    ResourceState.Failure(Constants.UPLOAD_FILE_FAILED)
+            }
         }
     }
 }

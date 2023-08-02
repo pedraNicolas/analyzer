@@ -12,6 +12,10 @@ class Constants {
         const val IMAGE_FIRST_NAME_PART = "image"
         const val JPG_EXTENSION = ".jpg"
         const val PDF_EXTENSION = ".pdf"
+        const val UPLOAD_FILE_FAILED = "upload_file_failed"
+        const val NOT_CONNECTION = "not_connection"
+        const val CATEGORIES_NOT_FOUND = "categories_not_found"
+        const val CATEGORIES_FAILED = "categories_failed"
 
     }
 }
