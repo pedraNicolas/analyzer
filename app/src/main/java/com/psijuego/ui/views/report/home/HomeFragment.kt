@@ -83,19 +83,19 @@ class HomeFragment : Fragment() {
     }
 
     private fun onDeleteImage(view: View) {
+        with(binding) {
+            btnUpload.visibility = View.VISIBLE
+            ivImage.visibility = View.GONE
+            ivDelete.visibility = View.GONE
+            tvDescriptionLabel.layoutParams =
+                (tvDescriptionLabel.layoutParams as ConstraintLayout.LayoutParams).apply {
+                    topToBottom = R.id.btnUpload
+                }
+        }
         val filePath = mUri?.lastPathSegment?.let { utilFile.getImageFullFilePath(it) } ?: ""
         val deleted = utilFile.deleteFile(filePath)
         if (deleted) {
             mUri = null
-            with(binding) {
-                btnUpload.visibility = View.VISIBLE
-                ivImage.visibility = View.GONE
-                ivDelete.visibility = View.GONE
-                tvDescriptionLabel.layoutParams =
-                    (tvDescriptionLabel.layoutParams as ConstraintLayout.LayoutParams).apply {
-                        topToBottom = R.id.btnUpload
-                    }
-            }
         }
     }
 
@@ -123,11 +123,11 @@ class HomeFragment : Fragment() {
         } catch (e: Exception) {
             e.printStackTrace()
         }
-        updateComponent()
+        updateComponent(mUri)
     }
 
-    private fun updateComponent() {
-        if (mUri != null) {
+    private fun updateComponent(uri: Uri?) {
+        if (uri != null) {
             val uri = mUri
             with(binding) {
                 btnUpload.visibility = View.GONE
@@ -168,7 +168,7 @@ class HomeFragment : Fragment() {
                 homeUI.namePatient.let { tvPatientName.setText(it) }
                 homeUI.agePatient.let { tvRegistrationNumber.setText(it) }
                 homeUI.drawDescription.let { tvDescription.setText(it) }
-                showImage(homeUI.uri)
+                updateComponent(homeUI.uri)
             }
         }
     }

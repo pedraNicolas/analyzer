@@ -32,9 +32,18 @@ class WelcomeFragment : Fragment() {
     }
 
     private fun setUpComponents() {
+        binding.welcomeFragment.setOnClickListener {
+            navigate()
+        }
+
         GlobalScope.launch(Dispatchers.Main) {
             delay(400)
-            Navigation.findNavController(binding.root).navigate(R.id.action_welcomeFragment_to_homeFragment)
+            navigate()
         }
+    }
+
+    private fun navigate() {
+        Navigation.findNavController(binding.root)
+            .navigate(R.id.action_welcomeFragment_to_homeFragment)
     }
 }

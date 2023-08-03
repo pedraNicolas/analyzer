@@ -149,7 +149,7 @@ class UtilPDF {
         val columnWidth = floatArrayOf(510f, 165f, 822f)
         val table = Table(columnWidth)
 
-        val bitmap = BitmapFactory.decodeResource(context?.resources, R.drawable.logo_psi_juego)
+        val bitmap = BitmapFactory.decodeResource(context?.resources, R.drawable.logo_psi_juego_sin_fondo)
         val outputStream = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
         val imageData = ImageDataFactory.create(outputStream.toByteArray())

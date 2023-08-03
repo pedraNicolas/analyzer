@@ -61,6 +61,7 @@ class ExportReportFragment : Fragment() {
         viewModel.uploadState.observe(viewLifecycleOwner) {
             when (it) {
                 is ResourceState.Success -> {
+                    Toast.makeText(requireContext(), resources.getString(R.string.qr_created), Toast.LENGTH_SHORT).show()
                     binding.topAppBar.menu.findItem(R.id.new_qr).isEnabled = true
                     createQr(it.data)
                 }
@@ -86,7 +87,7 @@ class ExportReportFragment : Fragment() {
     private fun setUpComponent() {
         with(binding) {
 
-            if (pdfFile != null && pdfFile.exists()) {
+            if (pdfFile.exists()) {
                 pdfView.fromFile(pdfFile).load()
             }
 
@@ -160,7 +161,7 @@ class ExportReportFragment : Fragment() {
     private fun onEmailPDFShare(uri: Uri?) {
         if (uri != null) {
             urisList.clear()
-            urisList.add(uri!!)
+            urisList.add(uri)
             val intent =
                 UtilShare.getInstance().getEmailIntentPdf(binding.root.context, urisList)
             requireContext().startActivity(intent)
@@ -169,7 +170,7 @@ class ExportReportFragment : Fragment() {
 
     private fun onWhatsAppPDFShare(uri: Uri?) {
         if (uri != null) {
-            val intent = UtilShare.getInstance().getWhatsAppIntent(binding.root.context, uri!!)
+            val intent = UtilShare.getInstance().getWhatsAppIntent(binding.root.context, uri)
             requireContext().startActivity(intent)
         }
 
@@ -189,6 +190,7 @@ class ExportReportFragment : Fragment() {
     private fun onNewReport() {
         viewModel.setHomeUI(HomeUI())
         viewModel.setConclusion("")
+        viewModel.setCategoryUI(emptyList())
         findNavController().navigate(R.id.action_exportReportFragment_to_homeFragment)
     }
 
@@ -196,13 +198,17 @@ class ExportReportFragment : Fragment() {
         val menu = binding.topAppBar.menu
         val menuItem = menu.findItem(R.id.new_qr)
         if (isPdfSelect) {
+            binding.topAppBar.title = resources.getString(R.string.qr_code)
             menuItem.setIcon(R.drawable.ic_document)
             binding.qrCode.visibility = View.VISIBLE
+            binding.tvTitle.visibility = View.VISIBLE
             binding.pdfView.visibility = View.GONE
             isPdfSelect = false
         } else {
             menuItem.setIcon(R.drawable.ic_qr)
+            binding.topAppBar.title = resources.getString(R.string.report)
             binding.qrCode.visibility = View.GONE
+            binding.tvTitle.visibility = View.GONE
             binding.pdfView.visibility = View.VISIBLE
             isPdfSelect = true
         }
