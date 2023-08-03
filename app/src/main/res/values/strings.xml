@@ -27,6 +27,7 @@
     <string name="professional_name">Nombre del profesional</string>
     <string name="professional_name_hint">Nombre del profesional (Requerido)</string>
     <string name="qr_code">Código QR</string>
+    <string name="qr_created">Ya puedes crear tu código QR</string>
     <string name="qr_failed">Ocurrió algo inesperado, no se pudo generar el código QR.</string>
     <string name="qr_ready">¡Ya está listo tu código QR! \nEscanéalo para acceder al informe</string>
     <string name="qr_saved">El código QR se ha guardado en la carpeta de descargas</string>

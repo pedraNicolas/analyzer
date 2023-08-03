@@ -61,6 +61,7 @@ class ExportReportFragment : Fragment() {
         viewModel.uploadState.observe(viewLifecycleOwner) {
             when (it) {
                 is ResourceState.Success -> {
+                    Toast.makeText(requireContext(), resources.getString(R.string.qr_created), Toast.LENGTH_SHORT).show()
                     binding.topAppBar.menu.findItem(R.id.new_qr).isEnabled = true
                     createQr(it.data)
                 }
