@@ -20,7 +20,6 @@ class NoConnectionLayout @JvmOverloads constructor(
 
     var mView: View? = null
     var tvTitle: TextView? = null
-    var tvSubTitle: TextView? = null
     var llWithoutConnection: LinearLayout? = null
     var retryButton: Button? = null
 
@@ -38,9 +37,5 @@ class NoConnectionLayout @JvmOverloads constructor(
 
     fun setTitle(title: String?) {
         tvTitle!!.text = title
-    }
-
-    fun setSuyTitle(subTitle: String?) {
-        tvSubTitle!!.text = subTitle
     }
 }
