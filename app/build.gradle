@@ -70,7 +70,7 @@ dependencies {
     implementation "androidx.fragment:fragment-ktx:$fragment_version"
 
     //Firebase
-    implementation platform('com.google.firebase:firebase-bom:31.0.0')
+    implementation platform('com.google.firebase:firebase-bom:32.2.0')
     implementation("com.google.firebase:firebase-analytics-ktx")
 
     //Firebase Storage
