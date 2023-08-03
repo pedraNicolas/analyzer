@@ -2,25 +2,23 @@ package com.psijuego.ui.views.report.home
 
 import android.app.Activity
 import android.content.Intent
-import android.content.res.ColorStateList
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
+import com.bumptech.glide.Glide
 import com.psijuego.R
 import com.psijuego.core.utils.UtilFile
 import com.psijuego.core.utils.UtilUploadFiles
 import com.psijuego.data.model.ui.HomeUI
 import com.psijuego.databinding.FragmentHomeBinding
 import com.psijuego.ui.views.report.SharedViewModel
-import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -60,12 +58,6 @@ class HomeFragment : Fragment() {
                 attachGalleryDraw()
 
             }
-            btnUpload.imageTintList = ColorStateList.valueOf(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.primary_material3_40
-                )
-            )
             ivDelete.setOnClickListener(::onDeleteImage)
         }
     }
@@ -91,19 +83,19 @@ class HomeFragment : Fragment() {
     }
 
     private fun onDeleteImage(view: View) {
+        with(binding) {
+            btnUpload.visibility = View.VISIBLE
+            ivImage.visibility = View.GONE
+            ivDelete.visibility = View.GONE
+            tvDescriptionLabel.layoutParams =
+                (tvDescriptionLabel.layoutParams as ConstraintLayout.LayoutParams).apply {
+                    topToBottom = R.id.btnUpload
+                }
+        }
         val filePath = mUri?.lastPathSegment?.let { utilFile.getImageFullFilePath(it) } ?: ""
         val deleted = utilFile.deleteFile(filePath)
         if (deleted) {
             mUri = null
-            with(binding) {
-                llUpload.visibility = View.VISIBLE
-                ivImage.visibility = View.GONE
-                ivDelete.visibility = View.GONE
-                tvDescriptionLabel.layoutParams =
-                    (tvDescriptionLabel.layoutParams as ConstraintLayout.LayoutParams).apply {
-                        topToBottom = R.id.llUpload
-                    }
-            }
         }
     }
 
@@ -131,14 +123,14 @@ class HomeFragment : Fragment() {
         } catch (e: Exception) {
             e.printStackTrace()
         }
-        updateComponent()
+        updateComponent(mUri)
     }
 
-    private fun updateComponent() {
-        if (mUri != null) {
+    private fun updateComponent(uri: Uri?) {
+        if (uri != null) {
             val uri = mUri
             with(binding) {
-                llUpload.visibility = View.GONE
+                btnUpload.visibility = View.GONE
                 ivImage.visibility = View.VISIBLE
                 ivDelete.visibility = View.VISIBLE
                 tvDescriptionLabel.layoutParams =
@@ -162,7 +154,7 @@ class HomeFragment : Fragment() {
         with(binding) {
             tvProfessionalName.text?.toString()?.let { homeUI.nameProfessional = it }
             tvPatientName.text?.toString()?.let { homeUI.namePatient = it }
-            tvRegistrationNumber.text?.toString()?.let { homeUI.numberRegistration = it }
+            tvRegistrationNumber.text?.toString()?.let { homeUI.agePatient = it }
             tvDescription.text?.toString()?.let { homeUI.drawDescription = it }
             homeUI.uri = mUri
         }
@@ -174,9 +166,9 @@ class HomeFragment : Fragment() {
             with(binding) {
                 homeUI.nameProfessional.let { tvProfessionalName.setText(it) }
                 homeUI.namePatient.let { tvPatientName.setText(it) }
-                homeUI.numberRegistration.let { tvRegistrationNumber.setText(it) }
+                homeUI.agePatient.let { tvRegistrationNumber.setText(it) }
                 homeUI.drawDescription.let { tvDescription.setText(it) }
-                showImage(homeUI.uri)
+                updateComponent(homeUI.uri)
             }
         }
     }

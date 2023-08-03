@@ -19,3 +19,19 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+-keep class com.shockwave.**
+
+-dontwarn org.jetbrains.kotlin.**
+
+
+####### START iTextPdf
+-keep class javax.xml.crypto.dsig.** { *; }
+-dontwarn javax.xml.crypto.dsig.**
+-keep class javax.xml.crypto.** { *; }
+-dontwarn javax.xml.crypto.**
+-keep class org.spongycastle.** { *; }
+-keep class com.itextpdf.** { *; }
+-dontwarn org.spongycastle.**
+-dontwarn com.itextpdf.**
+####### END iTextPdf

@@ -15,17 +15,18 @@ class DatabaseFirebaseStorage @Inject constructor() {
             val uri = Uri.fromFile(file)
             val fileName = file.name
             val fileRef = storageRef.child("documents/$fileName")
-            fileRef.putFile(uri).addOnSuccessListener { uploadTask ->
-                // Obtener la URL de descarga del archivo
+            fileRef.putFile(uri).addOnSuccessListener {
                 fileRef.downloadUrl.addOnSuccessListener { downloadUrl ->
                     val fileUrl = downloadUrl.toString()
                     getUrl(fileUrl)
                 }.addOnFailureListener {
-
+                    it.printStackTrace()
+                    getUrl("")
                 }
             }
         } catch (e: Exception) {
-
+            e.printStackTrace()
+            getUrl("")
         }
     }
 }
