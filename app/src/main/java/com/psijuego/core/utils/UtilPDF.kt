@@ -63,7 +63,7 @@ class UtilPDF {
 
         document.add(addHeaderTable(homeUI))
         document.add(Paragraph("\n"))
-        if (homeUI.uri != null && !homeUI.drawDescription.isNullOrBlank()) document.add(
+        if (homeUI.uri != null || !homeUI.drawDescription.isNullOrBlank()) document.add(
             addImageAndDescriptionTable(homeUI)
         )
         document.add(Paragraph("\n"))
