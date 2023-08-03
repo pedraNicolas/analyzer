@@ -299,7 +299,7 @@ class UtilPDF {
                 bitmap?.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
                 val imageData = ImageDataFactory.create(byteArrayOutputStream.toByteArray())
                 val image = Image(imageData)
-                image.scaleToFit(300f, Float.MAX_VALUE)
+                image.scaleToFit(200f, Float.MAX_VALUE)
                 table.addCell(
                     Cell().add(Paragraph().add(image)).setTextAlignment(TextAlignment.CENTER)
                         .setBorder(Border.NO_BORDER)
@@ -318,6 +318,8 @@ class UtilPDF {
                 Cell().add(Paragraph("\"${homeUI.drawDescription}\""))
                     .setTextAlignment(TextAlignment.CENTER).setItalic().setBorder(Border.NO_BORDER)
             )
+        }else{
+            table.addCell(Cell().add(Paragraph("\n")).setBorder(Border.NO_BORDER))
         }
 
         return table
