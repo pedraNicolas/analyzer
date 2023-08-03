@@ -5,8 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
@@ -38,9 +38,21 @@ class CategoryFragment : Fragment(), CategoryListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpRecyclerView()
         setUpComponents()
         setUpViewModel()
-        setUpRecyclerView()
+
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                onBack()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
+    }
+
+    private fun setUpViewModel() {
+        categoriesList = viewModel.categoryUI.value ?: emptyList()
+        bindToForm()
     }
 
     private fun setUpComponents() {
@@ -49,19 +61,17 @@ class CategoryFragment : Fragment(), CategoryListener {
             noConnection.retryButton?.setOnClickListener {
                 noConnection.visibility = View.GONE
                 rvCategory.visibility = View.VISIBLE
-                viewModel.getCategoriesList()
             }
-        }
-    }
-
-    private fun setUpViewModel() {
-        if (categoriesList.isNullOrEmpty()) {
             viewModel.getCategoriesList()
-            setUpObservers()
         }
     }
 
-    private fun setUpObservers() {
+    private fun getCategoriesList() {
+        viewModel.getCategoriesList()
+        setUpDataStateObserver()
+    }
+
+    private fun setUpDataStateObserver() {
         viewModel.dataState.observe(viewLifecycleOwner) { resourceState ->
             with(binding) {
                 when (resourceState) {
@@ -107,10 +117,6 @@ class CategoryFragment : Fragment(), CategoryListener {
         }
     }
 
-    private fun setUpNavigation(view: View, navigation: Int) {
-        Navigation.findNavController(view).navigate(navigation)
-    }
-
     override fun onItemStateChanged(
         indicatorUIPosition: Int,
         parameterName: String,
@@ -128,15 +134,24 @@ class CategoryFragment : Fragment(), CategoryListener {
     override fun onNextClicked() {
         bindToObject()
         viewModel.dataState.removeObservers(viewLifecycleOwner)
-        setUpNavigation(binding.root, R.id.action_indicatorsFragment_to_conclusionsFragment)
+        findNavController().navigate(R.id.action_indicatorsFragment_to_conclusionsFragment)
     }
 
     private fun bindToObject() {
         viewModel.setCategoryUI(categoriesList)
     }
 
+    private fun bindToForm() {
+        if (categoriesList.isNullOrEmpty()) {
+            getCategoriesList()
+        } else {
+            fillIndicatorList(categoriesList)
+        }
+    }
+
     private fun onBack() {
         bindToObject()
+        viewModel.dataState.removeObservers(viewLifecycleOwner)
         findNavController().popBackStack()
     }
 }

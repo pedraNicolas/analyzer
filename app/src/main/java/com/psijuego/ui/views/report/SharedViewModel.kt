@@ -60,7 +60,7 @@ class SharedViewModel @Inject constructor(
     }
 
     fun setCategoryUI(data: List<CategoryUI>) {
-        _categoryUI.postValue(data)
+        _categoryUI.value = data
     }
 
     fun getCategoriesList() {
@@ -71,7 +71,6 @@ class SharedViewModel @Inject constructor(
                     val list = categoryUseCase.getCategoriesList()
                     if (list.isNotEmpty()) {
                         _dataState.value = ResourceState.Success(list)
-                        _categoryUI.postValue(list)
                     } else {
                         _dataState.value =
                             ResourceState.Failure(Constants.CATEGORIES_NOT_FOUND)
