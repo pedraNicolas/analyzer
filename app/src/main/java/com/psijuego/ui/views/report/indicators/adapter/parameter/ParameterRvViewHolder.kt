@@ -52,7 +52,7 @@ class ParameterRvViewHolder(
                 btnMore.setImageDrawable(
                     ContextCompat.getDrawable(
                         binding.btnMore.context,
-                        R.drawable.arrow_right_24px
+                        R.drawable.ic_arrow_right
                     )
                 )
                 morePressed = false

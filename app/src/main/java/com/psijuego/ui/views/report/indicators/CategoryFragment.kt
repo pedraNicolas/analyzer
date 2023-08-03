@@ -61,6 +61,7 @@ class CategoryFragment : Fragment(), CategoryListener {
             noConnection.retryButton?.setOnClickListener {
                 noConnection.visibility = View.GONE
                 rvCategory.visibility = View.VISIBLE
+                getCategoriesList()
             }
             viewModel.getCategoriesList()
         }
