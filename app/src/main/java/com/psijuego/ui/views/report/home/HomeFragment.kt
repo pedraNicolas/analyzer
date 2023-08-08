@@ -1,25 +1,34 @@
 package com.psijuego.ui.views.report.home
 
+import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.psijuego.R
+import com.psijuego.core.Constants
 import com.psijuego.core.utils.UtilFile
+import com.psijuego.core.utils.UtilPermissions
 import com.psijuego.core.utils.UtilUploadFiles
 import com.psijuego.data.model.ui.HomeUI
 import com.psijuego.databinding.FragmentHomeBinding
 import com.psijuego.ui.views.report.SharedViewModel
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -31,7 +40,7 @@ class HomeFragment : Fragment() {
     private var homeUI: HomeUI = HomeUI()
     private val viewModel: SharedViewModel by activityViewModels<SharedViewModel>()
     private var mUri: Uri? = null
-
+    private val utilPermissions = UtilPermissions.getInstance()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,6 +49,12 @@ class HomeFragment : Fragment() {
         setUpComponents()
         return binding.root
     }
+
+    override fun onStart() {
+        super.onStart()
+        utilPermissions.checkAndRequestPermissions(requireActivity())
+    }
+
 
     override fun onPause() {
         super.onPause()
@@ -55,11 +70,29 @@ class HomeFragment : Fragment() {
         with(binding) {
             btnNext.setOnClickListener(::preValidate)
             btnUpload.setOnClickListener() {
-                attachGalleryDraw()
-
+                if (utilPermissions.validatePermissions(requireActivity())) {
+                    attachGalleryDraw()
+                } else {
+                    requirePermission()
+                }
             }
             ivDelete.setOnClickListener(::onDeleteImage)
         }
+    }
+
+    private fun requirePermission() {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(resources.getString(R.string.permission_required))
+            .setMessage(resources.getString(R.string.require_permissions_supporting_text))
+            .setNegativeButton(resources.getString(R.string.cancel)) { _, _ ->
+            }
+            .setPositiveButton(resources.getString(R.string.accept)) { _, _ ->
+                val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                val uri = Uri.fromParts("package", requireActivity().packageName, null)
+                intent.data = uri
+                startActivity(intent)
+            }
+            .show()
     }
 
     private fun preValidate(view: View) {
