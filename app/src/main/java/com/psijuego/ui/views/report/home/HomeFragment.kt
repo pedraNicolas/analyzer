@@ -2,6 +2,7 @@ package com.psijuego.ui.views.report.home
 
 import android.Manifest
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -73,27 +74,14 @@ class HomeFragment : Fragment() {
                 if (utilPermissions.validatePermissions(requireActivity())) {
                     attachGalleryDraw()
                 } else {
-                    requirePermission()
+                    utilPermissions.requirePermission(requireContext(), requireActivity())
                 }
             }
             ivDelete.setOnClickListener(::onDeleteImage)
         }
     }
 
-    private fun requirePermission() {
-        MaterialAlertDialogBuilder(requireContext())
-            .setTitle(resources.getString(R.string.permission_required))
-            .setMessage(resources.getString(R.string.require_permissions_supporting_text))
-            .setNegativeButton(resources.getString(R.string.cancel)) { _, _ ->
-            }
-            .setPositiveButton(resources.getString(R.string.accept)) { _, _ ->
-                val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                val uri = Uri.fromParts("package", requireActivity().packageName, null)
-                intent.data = uri
-                startActivity(intent)
-            }
-            .show()
-    }
+
 
     private fun preValidate(view: View) {
         with(binding) {

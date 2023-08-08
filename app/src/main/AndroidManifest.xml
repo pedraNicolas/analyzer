@@ -27,7 +27,7 @@
         <activity
             android:name=".ui.views.report.MainActivity"
             android:launchMode="singleInstance"
-            android:theme="@style/Theme.RemoveSplashScreenTheme"
+            android:theme="@style/AppTheme"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

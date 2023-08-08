@@ -2,10 +2,16 @@ package com.psijuego.core.utils
 
 import android.Manifest
 import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
+import android.provider.Settings
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.psijuego.R
 import com.psijuego.core.Constants
 
 class UtilPermissions {
@@ -78,6 +84,21 @@ class UtilPermissions {
             if (permission == Manifest.permission.READ_EXTERNAL_STORAGE) return REQ_READ_EXTERNAL_STORAGE
         }
         return 0;
+    }
+
+    fun requirePermission(context: Context, activity: Activity) {
+        MaterialAlertDialogBuilder(context)
+            .setTitle(context.resources.getString(R.string.permission_required))
+            .setMessage(context.resources.getString(R.string.require_permissions_supporting_text))
+            .setNegativeButton(context.resources.getString(R.string.cancel)) { _, _ ->
+            }
+            .setPositiveButton(context.resources.getString(R.string.accept)) { _, _ ->
+                val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                val uri = Uri.fromParts("package", activity.packageName, null)
+                intent.data = uri
+                activity.startActivity(intent)
+            }
+            .show()
     }
 
 
